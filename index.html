@@ -1,1 +1,38 @@
-gh
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Current Date and Time</title>
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const dateString = now.toLocaleDateString('en-US', options);
+        const dayString = now.toLocaleDateString('en-US', { weekday: 'long' });
+        document.getElementById('date').textContent = dateString;
+        document.getElementById('dayOfWeek').textContent = dayString;
+      }
+
+      // Call updateDateTime every second to update the display
+      setInterval(updateDateTime, 1000);
+    </script>
+    <style>
+      /* Style the date and dayOfWeek elements */
+      #date {
+        font-size: 3em;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      #dayOfWeek {
+        font-size: 2em;
+        font-style: italic;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="date"></div>
+    <div id="dayOfWeek"></div>
+  </body>
+</html>
