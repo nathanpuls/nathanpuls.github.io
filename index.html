@@ -1,102 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Simple Web Game</title>
+	<title>sayingthings.com</title>
 	<style>
-		#game-container {
-			width: 400px;
-			height: 400px;
-			border: 1px solid black;
-			position: relative;
+		body {
+			background-color: #f6f6f6;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			max-width: 960px;
 			margin: 0 auto;
-			background-color: #fff;
-			overflow: hidden;
+			padding: 40px;
 		}
-		#player {
-			width: 50px;
-			height: 50px;
-			background-color: red;
-			position: absolute;
-			bottom: 0;
-			left: 50%;
-			transform: translateX(-50%);
-		}
-		#enemy {
-			width: 50px;
-			height: 50px;
-			background-color: blue;
-			position: absolute;
-			top: 0;
-			left: 50%;
-			transform: translateX(-50%);
-			animation: enemy-fall 2s linear infinite;
-		}
-		@keyframes enemy-fall {
-			from { top: -50px; }
-			to { top: 450px; }
-		}
-		#score {
+		h1 {
+			font-size: 72px;
+			color: #444444;
+			margin: 0;
+			text-shadow: 2px 2px #ffffff;
 			text-align: center;
+		}
+		.subheading {
+			font-size: 36px;
+			color: #777777;
+			margin: 0;
+			text-align: center;
+			text-shadow: 1px 1px #ffffff;
+		}
+		.box {
+			background-color: #ffffff;
+			box-shadow: 0px 0px 10px #dddddd;
+			border-radius: 10px;
+			padding: 20px;
+			margin-top: 40px;
+			text-align: center;
+		}
+		.button {
+			background-color: #444444;
+			color: #ffffff;
 			font-size: 24px;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
 			margin-top: 20px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		.button:hover {
+			background-color: #333333;
 		}
 	</style>
 </head>
 <body>
-	<div id="game-container">
-		<div id="player"></div>
-		<div id="enemy"></div>
+	<div class="container">
+		<h1>sayingthings.com</h1>
+	
+		<div class="box">
+			<p>Thanks for stopping by</p>
+		
+		</div>
 	</div>
-	<div id="score">Score: 0</div>
-	<script>
-		// get references to HTML elements
-		var gameContainer = document.getElementById("game-container");
-		var player = document.getElementById("player");
-		var enemy = document.getElementById("enemy");
-		var scoreElement = document.getElementById("score");
-
-		// initialize game state
-		var score = 0;
-
-		// set up keyboard controls
-		document.addEventListener("keydown", function(event) {
-			if (event.keyCode === 37) { // left arrow
-				player.style.left = Math.max(0, parseInt(player.style.left) - 10) + "px";
-			} else if (event.keyCode === 39) { // right arrow
-				player.style.left = Math.min(gameContainer.clientWidth - player.clientWidth, parseInt(player.style.left) + 10) + "px";
-			}
-		});
-
-		// start game loop
-		var gameLoop = setInterval(function() {
-			// check for collision
-			if (isColliding(player, enemy)) {
-				clearInterval(gameLoop);
-				alert("Game over! Your score is " + score);
-			}
-
-			// update score
-			score++;
-			scoreElement.innerHTML = "Score: " + score;
-
-			// move enemy down
-			enemy.style.top = parseInt(enemy.style.top) + 10 + "px";
-
-			// reset enemy if it goes off the bottom of the screen
-			if (parseInt(enemy.style.top) > gameContainer.clientHeight) {
-				enemy.style.top = "-50px";
-			}
-		}, 1000/60); // 60 fps
-
-		// helper function to check for collision
-		function isColliding(a, b) {
-			var aRect = a.getBoundingClientRect();
-			var bRect = b.getBoundingClientRect();
-			return !(
-				(aRect.bottom < bRect.top) ||
-				(aRect.top > bRect.bottom) ||
-				(aRect.right < bRect.left) ||
-				(aRect.left > bRect.right)
-			);
-		}
-	</script>
+</body>
+</html>
