@@ -1,0 +1,201 @@
+	<!DOCTYPE html>
+<html lang="en" >		<html lang="en" >
+<head>		<head>
+  <meta charset="UTF-8">		  <meta charset="UTF-8">
+  <title>CodePen - small group coffee shop</title>		  <title>CodePen - small group coffee shop</title>
+  <link rel="stylesheet" href="./style.css">		  <link rel="stylesheet" href="./style.css">
+</head>		</head>
+<body>		<body>
+<!-- partial:index.partial.html -->		<!-- partial:index.partial.html -->
+<!-- header -->		<!-- header -->
+<header class="header">		<header class="header">
+<!--   logo -->		<!--   logo -->
+  <a href="#" class="logo">		  <a href="#" class="logo">
+    <i class="fas fa-coffee"></i>small group coffee shop		    <i class="fas fa-coffee"></i>small group coffee shop
+  </a>		  </a>
+  		  
+<!--   linked list -->		<!--   linked list -->
+  <nav class="navbar">		  <nav class="navbar">
+    <div id="close-navbar" class="fas fa-times"></div>		    <div id="close-navbar" class="fas fa-times"></div>
+    <a href="#">home</a>		    <a href="#">home</a>
+    <a href="#about">about</a>		    <a href="#about">about</a>
+    <a href="#menu">menu</a>		    <a href="#menu">menu</a>
+    <a href="#contact">contact</a>		    <a href="#contact">contact</a>
+  </nav>		  </nav>
+  		  
+<!--   humburger menu  -->		<!--   humburger menu  -->
+  <div class="icons">		  <div class="icons">
+<!--     put dark mode here later -->		<!--     put dark mode here later -->
+    <div id="menu-btn" class="fas fa-bars"></div>		    <div id="menu-btn" class="fas fa-bars"></div>
+  </div>		  </div>
+</header>		</header>
+<!-- end header -->		<!-- end header -->
+<!-- Home -->		<!-- Home -->
+<section id="home" class="home">		<section id="home" class="home">
+  <div class="content">		  <div class="content">
+    <h3>		    <h3>
+      Want connection <br>		      Want connection <br>
+      and personal growth <br>		      and personal growth <br>
+      with your cup?		      with your cup?
+    </h3>		    </h3>
+    <a href="#" class="btn">order now</a>		    <a href="#" class="btn">order now</a>
+  </div>		  </div>
+</section>		</section>
+<!-- home -->		<!-- home -->
+<!-- About us -->		<!-- About us -->
+<h1 class="heading">about us</h1>		<h1 class="heading">about us</h1>
+<section id="about" class="about">		<section id="about" class="about">
+  <div class="row">		  <div class="row">
+    		    
+<!--     image -->		<!--     image -->
+    <div class="image">		    <div class="image">
+      <img src="https://images.pexels.com/photos/373639/pexels-photo-373639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="person represent coffee cup">		      <img src="https://images.pexels.com/photos/373639/pexels-photo-373639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="person represent coffee cup">
+    </div>		    </div>
+    		    
+    <div class="content">		    <div class="content">
+      <h3>what makes our coffee special?</h3>		      <h3>what makes our coffee special?</h3>
+      <div class="line"></div>		      <div class="line"></div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur ut nam et libero harum illo, inventore voluptatem eligendi fugit tempore, fugiat reiciendis, non culpa vel est possimus! Deserunt, omnis inventore?</p>		      <p>The Small Group brand was born from a deep appreciation for values that are dear to my heart, such as emotional intelligence and human connection. At its core, our brand is built upon the idea of creating a space for individuals to connect with one another, to share their experiences, and to grow as individuals.
+Our name, "Small Group," is a nod to the powerful impact that group therapy can have on people's lives. By bringing together individuals in a small and intimate setting, we create a safe and supportive environment where everyone's voice can be heard, and their feelings can be validated.
+Through this process of sharing and listening, we hope to help our clients experience meaningful growth and transformation. We believe that everyone deserves to have a space where they feel seen and heard, and we are committed to creating that space through our Small Group brand.</p>
+    </div>		    </div>
+    		    
+  </div>		  </div>
+</section>		</section>
+<!-- end -->		<!-- end -->
+<!-- Menu -->		<!-- Menu -->
+<section id="menu" class="menu">		<section id="menu" class="menu">
+  		  
+  <h1 class="heading">Menu</h1>		  <h1 class="heading">Menu</h1>
+  		  
+  <div class="box-container">		  <div class="box-container">
+    		    
+<!--     start item -->		<!--     start item -->
+    <div class="box">		    <div class="box">
+      		      
+      <img src="https://th.bing.com/th/id/R.bb11359a9631303f2ab00306b841fe38?rik=1FdYHD2ZJb8n8w&pid=ImgRaw&r=0" alt="coffee">		      <img src="https://th.bing.com/th/id/R.bb11359a9631303f2ab00306b841fe38?rik=1FdYHD2ZJb8n8w&pid=ImgRaw&r=0" alt="coffee">
+      <h3>Classic coffee espresso</h3>		      <h3>Classic coffee espresso</h3>
+      <div class="price">$10</div>		      <div class="price">$10</div>
+      		      
+    </div>		    </div>
+<!--     end item -->		<!--     end item -->
+    		    
+        		        
+<!--     start item -->		<!--     start item -->
+    <div class="box">		    <div class="box">
+      		      
+      <img src="https://grhaciumbuleuitgh.com/wp-content/uploads/2019/03/cup-300x216.jpg" alt="coffee">		      <img src="https://grhaciumbuleuitgh.com/wp-content/uploads/2019/03/cup-300x216.jpg" alt="coffee">
+      <h3>Classic coffee espresso</h3>		      <h3>Classic coffee espresso</h3>
+      <div class="price">$10</div>		      <div class="price">$10</div>
+      		      
+    </div>		    </div>
+<!--     end item -->		<!--     end item -->
+    		    
+        		        
+<!--     start item -->		<!--     start item -->
+    <div class="box">		    <div class="box">
+      		      
+      <img src="https://th.bing.com/th/id/R.bf72f8daaf68995eda4aa22e58c7d687?rik=3ZmRisqxGjNtdg&riu=http%3a%2f%2fi.dailymail.co.uk%2fi%2fpix%2f2016%2f10%2f07%2f15%2f2F24CB2600000578-0-Another_often_abused_word_is_the_strong_Italian_coffee_you_might-m-134_1475849625933.jpg&ehk=VPkATqC%2f7afBgAIT6AmYlukMLE9V%2brznGMuf1BpBbRs%3d&risl=&pid=ImgRaw&r=0" alt="coffee">		      <img src="https://th.bing.com/th/id/R.bf72f8daaf68995eda4aa22e58c7d687?rik=3ZmRisqxGjNtdg&riu=http%3a%2f%2fi.dailymail.co.uk%2fi%2fpix%2f2016%2f10%2f07%2f15%2f2F24CB2600000578-0-Another_often_abused_word_is_the_strong_Italian_coffee_you_might-m-134_1475849625933.jpg&ehk=VPkATqC%2f7afBgAIT6AmYlukMLE9V%2brznGMuf1BpBbRs%3d&risl=&pid=ImgRaw&r=0" alt="coffee">
+      <h3>Classic coffee espresso</h3>		      <h3>Classic coffee espresso</h3>
+      <div class="price">$10</div>		      <div class="price">$10</div>
+      		      
+    </div>		    </div>
+<!--     end item -->		<!--     end item -->
+    		    
+        		        
+<!--     start item -->		<!--     start item -->
+    <div class="box">		    <div class="box">
+      		      
+      <img src="https://th.bing.com/th/id/OIP.NUOXG6pzphuDJ4DCDo18qQHaHJ?pid=ImgDet&w=518&h=500&rs=1" alt="coffee">		      <img src="https://th.bing.com/th/id/OIP.NUOXG6pzphuDJ4DCDo18qQHaHJ?pid=ImgDet&w=518&h=500&rs=1" alt="coffee">
+      <h3>Classic coffee espresso</h3>		      <h3>Classic coffee espresso</h3>
+      <div class="price">$10</div>		      <div class="price">$10</div>
+      
+    </div>
+<!--     end item -->
+    
+        
+<!--     start item -->
+    <div class="box">
+      
+      <img src="https://th.bing.com/th/id/OIP.rAab2CCtoE2DjHi1a74nnwAAAA?pid=ImgDet&w=220&h=176&rs=1" alt="coffee">
+      <h3>Classic coffee espresso</h3>
+      <div class="price">$10</div>
+      
+    </div>
+<!--     end item -->
+            
+<!--     start item -->
+    <div class="box">
+      
+      <img src="https://th.bing.com/th/id/OIP.ogi_P-79GcljsS9Z1iUaAAHaHa?pid=ImgDet&w=180&h=180&rs=1" alt="coffee">
+      <h3>Classic coffee espresso</h3>
+      <div class="price">$10</div>
+      
+    </div>
+<!--     end item -->
+    
+  </div>
+</section>
+<!-- end -->
+<!-- contact us -->
+<section id="contact" class="contact">
+  
+  <h1 class="heading">contact us</h1>
+  
+  <div class="row">
+    
+    <div class="image">
+      
+      <img src="https://images.pexels.com/photos/2074130/pexels-photo-2074130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="contact us">
+      
+    </div>
+    
+    <form action="">
+      
+      <h3></h3>
+    
+<!-- Footer -->
+<section class="footer">
+  
+<div class="box-container">
+    <div class="box">
+    
+    <i class="fas fa-location-arrow"></i>
+    <h3>address</h3>
+    <p></p>
+    
+  </div>
+  
+   
+  <div class="box">
+    
+    <i class="fas fa-envelope"></i>
+    <h3>E - mail</h3>
+    <a href="#" class="link">hello@smallgroupcoffee.com</a>
+    
+  </div>
+  
+  <div class="box">
+    <i class="fas fa-phone"></i>
+    <h3>call us</h3>
+    <p>832-316-0632</p>
+  </div>
+  
+  <div class="box">
+    <i class="fas fa-phone"></i>
+    <h3>Location</h3>
+    <p>8020 N. Main St Houston TX, 77022</p>
+  </div>
+  <div class="box">
+    
+    <i class="fas fa-clock"></i>
+    <h3>opening hours</h3>
+    <p>monday - friday: 6:00 - 3:00
+        <br> saturday: 8:00 - 1:00</p>
+  </div>
+</div>
+  
+ 
+  
+</section>
+<!-- end -->
