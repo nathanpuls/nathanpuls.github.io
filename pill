@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pills Left</title>
+    <style>
+      body {
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        padding: 10px;
+        margin-bottom: 5px;
+        background-color: #fff;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        color: #333;
+      }
+
+      li:last-child {
+        margin-bottom: 0;
+      }
+
+      @media (min-width: 768px) {
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        li {
+          flex-basis: calc(33.33% - 10px);
+          margin: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Pills Left</h1>
+    <ul id="pills-left"></ul>
+    <script>
+      const startingDate = new Date('2023-04-07'); // April 7, 2023
+      let pillsLeft = 111;
+      const pillsList = document.getElementById('pills-left');
+
+      function updatePillsLeft() {
+        const today = new Date();
+        const daysElapsed = Math.floor((today - startingDate) / (1000 * 60 * 60 * 24));
+        const pillsTaken = Math.min(daysElapsed * 4, 111);
+        pillsLeft = 111 - pillsTaken;
+        const listItem = document.createElement('li');
+        listItem.textContent = `${pillsLeft} pills left`;
+        pillsList.appendChild(listItem);
+      }
+
+      updatePillsLeft();
+      setInterval(updatePillsLeft, 86400000); // run updatePillsLeft every 24 hours (86400000 milliseconds)
+    </script>
+  </body>
+</html>
