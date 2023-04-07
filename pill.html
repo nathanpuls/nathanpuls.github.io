@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pills Left</title>
     <style>
       body {
@@ -44,6 +45,12 @@
           margin: 5px;
         }
       }
+
+      @media (max-width: 767px) {
+        li {
+          font-size: 16px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -60,7 +67,7 @@
         const pillsTaken = Math.min(daysElapsed * 4, 111);
         pillsLeft = 111 - pillsTaken;
         const listItem = document.createElement('li');
-        listItem.textContent = `${pillsLeft} pills left`;
+        listItem.textContent = `${pillsLeft}`;
         pillsList.appendChild(listItem);
       }
 
