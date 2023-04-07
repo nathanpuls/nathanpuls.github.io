@@ -5,7 +5,7 @@
     <title>Pills Left</title>
     <style>
       body {
-        background-color: #f4f4f4;
+        background-color: #fff;
         font-family: Arial, sans-serif;
       }
 
@@ -24,9 +24,11 @@
         padding: 10px;
         margin-bottom: 5px;
         background-color: #fff;
-        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
         border-radius: 5px;
         color: #333;
+        font-size: 70px; /* add font-size property */
+        text-align: center; /* add text-align property */
+
       }
 
       li:last-child {
@@ -54,7 +56,7 @@
     </style>
   </head>
   <body>
-    <h1>Pills Left</h1>
+    <h1></h1>
     <ul id="pills-left"></ul>
     <script>
       const startingDate = new Date('2023-04-07'); // April 7, 2023
@@ -67,7 +69,7 @@
         const pillsTaken = Math.min(daysElapsed * 4, 111);
         pillsLeft = 111 - pillsTaken;
         const listItem = document.createElement('li');
-        listItem.textContent = `${pillsLeft}`;
+        listItem.textContent = `${pillsLeft} pills left`;
         pillsList.appendChild(listItem);
       }
 
