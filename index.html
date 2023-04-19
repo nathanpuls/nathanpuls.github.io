@@ -1,28 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<style id="css"></style>
+	<script id="js"></script>
 </head>
 <body>
 	<div id="data"></div>
 	<script>
 		var spreadsheetId = '175rCUXlhGcr43a30ZVoWk7VAioqb9g89ivSiJqMZ2M0';
-		var range = 'Sheet1!E1';
+		var htmlRange = 'Sheet1!B2';
+		var cssRange = 'Sheet1!C2';
+		var jsRange = 'Sheet1!D2';
 		var apiKey = 'AIzaSyBSR0QwHqOR7pebdeUl8LO7EA7_epUk7dk';
-		var url = 'https://sheets.googleapis.com/v4/spreadsheets/' + spreadsheetId + '/values/' + range + '?key=' + apiKey;
+		var htmlUrl = 'https://sheets.googleapis.com/v4/spreadsheets/' + spreadsheetId + '/values/' + htmlRange + '?key=' + apiKey;
+		var cssUrl = 'https://sheets.googleapis.com/v4/spreadsheets/' + spreadsheetId + '/values/' + cssRange + '?key=' + apiKey;
+		var jsUrl = 'https://sheets.googleapis.com/v4/spreadsheets/' + spreadsheetId + '/values/' + jsRange + '?key=' + apiKey;
 
-		var xmlHttp = new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function() {
-			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-				var response = JSON.parse(xmlHttp.responseText);
-				var data = response.values[0][0];
-				document.getElementById('data').innerHTML = data;
-			} else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) {
-				console.log('Error fetching data');
+		var xmlHttpHtml = new XMLHttpRequest();
+		xmlHttpHtml.onreadystatechange = function() {
+			if (xmlHttpHtml.readyState == 4 && xmlHttpHtml.status == 200) {
+				var response = JSON.parse(xmlHttpHtml.responseText);
+				var htmlData = response.values[0][0];
+				document.getElementById('data').innerHTML = htmlData;
+			} else if (xmlHttpHtml.readyState == 4 && xmlHttpHtml.status != 200) {
+				console.log('Error fetching HTML data');
+				console.log(xmlHttpHtml.status);
 			}
 		};
-		xmlHttp.open('GET', url, true);
-		xmlHttp.send();
+		xmlHttpHtml.open('GET', htmlUrl, true);
+		xmlHttpHtml.send();
+
+		var xmlHttpCss = new XMLHttpRequest();
+		xmlHttpCss.onreadystatechange = function() {
+			if (xmlHttpCss.readyState == 4 && xmlHttpCss.status == 200) {
+				var response = JSON.parse(xmlHttpCss.responseText);
+				var cssData = response.values[0][0];
+				document.getElementById('css').innerHTML = cssData;
+			} else if (xmlHttpCss.readyState == 4 && xmlHttpCss.status != 200) {
+				console.log('Error fetching CSS data');
+				console.log(xmlHttpCss.status);
+			}
+		};
+		xmlHttpCss.open('GET', cssUrl, true);
+		xmlHttpCss.send();
+
+		var xmlHttpJs = new XMLHttpRequest();
+		xmlHttpJs.onreadystatechange = function() {
+			if (xmlHttpJs.readyState == 4 && xmlHttpJs.status == 200) {
+				var response = JSON.parse(xmlHttpJs.responseText);
+				var jsData = response.values[0][0];
+				document.getElementById('js').innerHTML = jsData;
+			} else if (xmlHttpJs.readyState == 4 && xmlHttpJs.status != 200) {
+				console.log('Error fetching Javascript data');
+				console.log(xmlHttpJs.status);
+			}
+		};
+		xmlHttpJs.open('GET', jsUrl, true);
+		xmlHttpJs.send();
 	</script>
 </body>
 </html>
