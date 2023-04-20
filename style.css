@@ -13,8 +13,10 @@
 html,body {
 -webkit-font-smoothing:antialiased;
 -webkit-text-size-adjust:100%;
-background-color:#0665a2;
-color:#fff;
+/*background-color:#0665a2;*/
+background-color:#ffffff;
+
+color:#000000;
 font-size:1rem;
 font-family:"Source Sans Pro", arial, sans-serif;
 font-weight:400;
@@ -51,10 +53,10 @@ box-sizing:border-box;
 /* Typography / Links
 ================================================== */
 
-p { color:#fff; display:block; font-size:.9rem; font-weight:400; margin:0 0 2px; }
+p { color:#000000; display:block; font-size:.9rem; font-weight:400; margin:0 0 2px; }
 
-a,a:visited { color:#8cc3e6; outline:0; text-decoration:underline; }
-a:hover,a:focus { color:#bbdef5; }
+a,a:visited { color:#3EB3FE; outline:0; text-decoration:underline; }
+a:hover,a:focus { color:##3EB3FE; }
 p a,p a:visited { line-height:inherit; }
 
 
@@ -122,8 +124,9 @@ margin:0;
 padding:21px 0;
 }
 
+/*hover color bm*/
 #plList li:hover {
-background-color:rgba(0, 0, 0, .1);
+/*background-color:rgb(93, 157, 217, 0.5);*/
 }
 
 .plItem {
@@ -154,14 +157,15 @@ top:0;
 
 .plSel,
 .plSel:hover {
-background-color:rgba(0, 0, 0, .1);
-color:#fff;
+    /*playing color bm*/
+background-color:rgba(62, 179, 254, 0.1);
+color:#000000;
 cursor:default !important;
 }
 
 #tracks a {
 border-radius:3px;
-color:#fff;
+color:#000000;
 cursor:pointer;
 display:inline-block;
 font-size:2.3rem;
@@ -176,7 +180,7 @@ transition:background .3s ease;
 #tracks a:hover,
 #tracks a:active {
 background-color:rgba(0, 0, 0, 0.1);
-color:#fff;
+color:#000000;
 }
 
 #tracks a::-moz-focus-inner {
@@ -191,7 +195,7 @@ padding:0;
 .plyr--audio .plyr__controls {
 background-color:transparent;
 border:none;
-color:#fff;
+color:#000000;
 font-family:"Source Sans Pro", arial, sans-serif;
 padding:20px 20px 20px 13px;
 width:100%;
