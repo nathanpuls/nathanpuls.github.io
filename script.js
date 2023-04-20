@@ -1,4 +1,4 @@
-// Mythium Archive: https://archive.org/details/mythium/
+// 2.0
 
 jQuery(function ($) {
     'use strict'
