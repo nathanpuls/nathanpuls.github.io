@@ -25,22 +25,22 @@ jQuery(function ($) {
             tracks = [{
                 "track": 1,
                 "name": "Commercial",
-                "duration": "2:46",
+                "duration": "",
                 "file": "https://sayingthings.s3.amazonaws.com/vo-audio/cfa8e725-8bb0-4e9b-864c-c67e5be8c28a_CommercialNathanPulsVoiceOvermp3"
             }, {
                 "track": 2,
                 "name": "Radio",
-                "duration": "8:30",
+                "duration": "",
                 "file": "https://sayingthings.s3.amazonaws.com/vo-audio/68c5aec6-64a0-4ebe-bc12-d0c8789961b4_RadioNathanPulsVoiceOvermp3"
             }, {    
                 "track": 3,
                 "name": "Narration",
-                "duration": "5:01",
+                "duration": "",
                 "file": "https://sayingthings.s3.amazonaws.com/vo-audio/e64c7cf3-7899-47db-8cc9-60d9179de0dd_NarrationNathanPulsVoiceOvermp3"
             }, {
                 "track": 4,
                 "name": "Animation",
-                "duration": "8:31",
+                "duration": "",
                 "file": "https://sayingthings.s3.amazonaws.com/vo-audio/d0b3077f-16aa-4b60-9c94-c73c2fcf88e2_AnimationNathanPulsVoiceOvermp3"
             }],
             buildPlaylist = $.each(tracks, function(key, value) {
@@ -52,7 +52,7 @@ jQuery(function ($) {
                 }
                 $('#plList').append('<li> \
                     <div class="plItem"> \
-                        <span class="plNum">' + trackNumber + '.</span> \
+                        <span class="plNum"></span> \
                         <span class="plTitle">' + trackName + '</span> \
                         <span class="plLength">' + trackDuration + '</span> \
                     </div> \
@@ -107,7 +107,8 @@ jQuery(function ($) {
             }),
             li = $('#plList li').on('click', function () {
                 var id = parseInt($(this).index());
-                if (id !== index) {
+                //if (id !== index) {
+                if (1==1) {  
                     playTrack(id);
                 }
             }),
