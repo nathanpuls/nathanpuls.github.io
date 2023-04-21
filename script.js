@@ -138,3 +138,84 @@ jQuery(function ($) {
         $('.container').append('<p class="no-support">' + noSupport + '</p>');
     }
 });
+
+  // VIDEO: Get the link element and the pop-up element
+ 
+  // Get the button element, the modal element, and the close button element
+  var button = document.getElementById("freeletics");
+  var modal = document.getElementById("myModal");
+  var close = document.getElementsByClassName("close")[0];
+  
+  // When the button is clicked, show the modal
+  button.addEventListener("click", function() {
+    modal.style.display = "block";
+  });
+  
+  // When the close button is clicked, hide the modal
+  close.addEventListener("click", function() {
+    modal.style.display = "none";
+  });
+  
+  // When the user clicks outside the modal, hide it
+  window.addEventListener("click", function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+
+
+
+
+/*
+  // Get the modal element
+var modal = document.getElementById("myModal");
+
+// Get the close button
+var closeBtn = modal.querySelector(".close");
+
+// Get the iframe element
+var iframe = modal.querySelector("#video-iframe");
+
+// Listen for click events on the close button
+closeBtn.addEventListener("click", function() {
+  // Set the src attribute of the iframe to an empty string
+  iframe.src = "";
+  // Hide the modal
+  modal.style.display = "none";
+});
+
+// Show the modal when the Freeletics button is clicked
+document.getElementById("freeletics").addEventListener("click", function() {
+  modal.style.display = "block";
+  iframe.src = "https://www.youtube.com/embed/lskrj62JbNI";
+});
+
+*/
+
+// Get the modal element
+var modal = document.getElementById("myModal");
+
+// Get the video element
+var video = document.getElementById("video");
+
+// Get the audio element
+var audio = document.getElementById("audio1");
+
+// When the user clicks anywhere outside the modal, close it and stop the video
+document.addEventListener('click', function(event) {
+  if (event.target == modal || event.target == video || event.target == audio) {
+    if (event.target == modal || event.target == video) {
+      modal.style.display = "none";
+      video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    } else if (event.target == audio) {
+      audio.pause();
+    }
+  }
+});
+
+
+
+
+
+
+
