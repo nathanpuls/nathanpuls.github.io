@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Axios Example</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>Axios Example</h1>
+    <button onclick="getData()">Get Data</button>
+    <div id="output"></div>
+
+    <script>
+      function getData() {
+        axios.get('https://linksaw.com/version-test/api/1.1/obj/vob-audio')
+          .then(function (response) {
+            // handle success
+            console.log(response);
+            document.getElementById('output').innerHTML = JSON.stringify(response.data);
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          });
+      }
+    </script>
+  </body>
+</html>
+
+

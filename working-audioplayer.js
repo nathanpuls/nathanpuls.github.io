@@ -1,45 +1,48 @@
-
-//let category;
-let categories = [];
-
 // 2.0
+
+
+
 //Bubble Fetch
+
+
       // Get the user ID from the URL parameter
       const urlParams = new URLSearchParams(window.location.search);
-      const uid = urlParams.get('uid');
+      const uidValue = urlParams.get('uid');
+
 
 // Get the DOM element to display the value
 const uidElement = document.getElementById('uid');
 
 // Set the value to the innerHTML of the DOM element
-uidElement.innerHTML = uid;
+uidElement.innerHTML = uidValue;
 
       // Construct the API endpoint URL
-      const apiUrl = `https://linksaw.com/version-test/api/1.1/obj/vob-audio?constraints=[{"key":"uid","constraint_type":"equals","value":"${uid}"}]`;
+      const apiUrl = `https://linksaw.com/version-test/api/1.1/obj/vob-audio?constraints=[{"key":"uid","constraint_type":"equals","value":"${uidValue}"}]`;
 
       //https://linksaw.com/version-test/api/1.1/obj/vob-audio/1643919725090x169839524417895170
     
+
+
       // Declare the variable outside the functions to make it available to both
-let audioUrl = [];
+let audioUrl;
 //let audioUrls = [];
+
+
 
       // Make a GET request to the API endpoint using fetch()
       fetch(apiUrl)
   .then(response => response.json())
   .then(data => {
-    
-    // Loop through each result in the "results" array and create an HTML list item element for each one
-    data.response.results.forEach(result => {
-        // Extract the demo-category and s3-url values from the result
-        categories.push(result['demo-category']);
-        //category = result['demo-category'];
-        audioUrl = result['s3-url'];
+    // Extract the audio URL from the first result in the "results" array
+    audioUrl = data.response.results[0]['s3-url'];
+    //audioUrls = data.response.results.map(result => result['s3-url']);
+
+
     // Display the audio URL in the HTML
     const audioUrlDiv = document.getElementById('audioUrl');
     audioUrlDiv.innerHTML = audioUrl;
     //audioUrlDiv.innerHTML = audioUrls[0];
 
-});
 
     jQuery(function ($) {
         'use strict'
@@ -65,20 +68,18 @@ let audioUrl = [];
                 extension = '',
                 tracks = [{
                     "track": 1,
-                    "name": category,
+                    "name": "Commercial",
                     "duration": "",
                     "file": `${audioUrl}`
                   //  "file": "https://sayingthings.s3.amazonaws.com/vo-audio/cfa8e725-8bb0-4e9b-864c-c67e5be8c28a_CommercialNathanPulsVoiceOvermp3"
                 }, {
                     "track": 2,
-                    "name": category,
+                    "name": "Radio",
                     "duration": "",
-                    "file": `${audioUrl}`
-                    //"file": "https://sayingthings.s3.amazonaws.com/vo-audio/68c5aec6-64a0-4ebe-bc12-d0c8789961b4_RadioNathanPulsVoiceOvermp3"
+                    "file": "https://sayingthings.s3.amazonaws.com/vo-audio/68c5aec6-64a0-4ebe-bc12-d0c8789961b4_RadioNathanPulsVoiceOvermp3"
                 }, {    
                     "track": 3,
-                    "name": category,
-                    //"name": "Narration",
+                    "name": "Narration",
                     "duration": "",
                     "file": "https://sayingthings.s3.amazonaws.com/vo-audio/e64c7cf3-7899-47db-8cc9-60d9179de0dd_NarrationNathanPulsVoiceOvermp3"
                 }, {
@@ -182,9 +183,93 @@ let audioUrl = [];
             $('.container').append('<p class="no-support">' + noSupport + '</p>');
         }
     });
+    
+    
+    
+      // VIDEO: Get the link element and the pop-up element
+     
+      // Get the button element, the modal element, and the close button element
+      var button = document.getElementById("freeletics");
+      var modal = document.getElementById("myModal");
+      var close = document.getElementsByClassName("close")[0];
+      
+      // When the button is clicked, show the modal
+      button.addEventListener("click", function() {
+        modal.style.display = "block";
+      });
+      
+      // When the close button is clicked, hide the modal
+      close.addEventListener("click", function() {
+        modal.style.display = "none";
+      });
+      
+      // When the user clicks outside the modal, hide it
+      window.addEventListener("click", function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
   })
   .catch(error => console.error(error));
 
+
+
+//2
+
+
+
+
+
+/*
+  // Get the modal element
+var modal = document.getElementById("myModal");
+
+// Get the close button
+var closeBtn = modal.querySelector(".close");
+
+// Get the iframe element
+var iframe = modal.querySelector("#video-iframe");
+
+// Listen for click events on the close button
+closeBtn.addEventListener("click", function() {
+  // Set the src attribute of the iframe to an empty string
+  iframe.src = "";
+  // Hide the modal
+  modal.style.display = "none";
+});
+
+// Show the modal when the Freeletics button is clicked
+document.getElementById("freeletics").addEventListener("click", function() {
+  modal.style.display = "block";
+  iframe.src = "https://www.youtube.com/embed/lskrj62JbNI";
+});
+
+*/
+
+// Get the modal element
+var modal = document.getElementById("myModal");
+
+// Get the video element
+var video = document.getElementById("video");
+
+// Get the audio element
+var audio = document.getElementById("audio1");
+
+// When the user clicks anywhere outside the modal, close it and stop the video
+document.addEventListener('click', function(event) {
+  if (event.target == modal || event.target == video || event.target == audio) {
+    if (event.target == modal || event.target == video) {
+      modal.style.display = "none";
+      video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    } else if (event.target == audio) {
+      audio.pause();
+    }
+  }
+});
+
+
+
+   
 
 
 

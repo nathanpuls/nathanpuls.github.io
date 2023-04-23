@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fetch JSON Data</title>
+  </head>
+  <body>
+    <div id="output"></div>
+
+    <script>
+      const userId = new URLSearchParams(window.location.search).get("userid");
+      const url = `https://bubble.io/api/1.1/obj/user?q=${userId}&api_token=`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const user = data.response[0];
+          const audioUrl = user.audio_files[0].s3_url;
+          document.getElementById("output").innerHTML = `<audio controls src="${audioUrl}"></audio>`;
+        })
+        .catch(error => console.error(error));
+    </script>
+  </body>
+</html>

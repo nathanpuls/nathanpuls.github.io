@@ -1,6 +1,5 @@
 
-//let category;
-let categories = [];
+
 
 // 2.0
 //Bubble Fetch
@@ -31,8 +30,7 @@ let audioUrl = [];
     // Loop through each result in the "results" array and create an HTML list item element for each one
     data.response.results.forEach(result => {
         // Extract the demo-category and s3-url values from the result
-        categories.push(result['demo-category']);
-        //category = result['demo-category'];
+        const category = result['demo-category'];
         audioUrl = result['s3-url'];
     // Display the audio URL in the HTML
     const audioUrlDiv = document.getElementById('audioUrl');
@@ -65,20 +63,19 @@ let audioUrl = [];
                 extension = '',
                 tracks = [{
                     "track": 1,
-                    "name": category,
+                    "name": "Commercial",
                     "duration": "",
                     "file": `${audioUrl}`
                   //  "file": "https://sayingthings.s3.amazonaws.com/vo-audio/cfa8e725-8bb0-4e9b-864c-c67e5be8c28a_CommercialNathanPulsVoiceOvermp3"
                 }, {
                     "track": 2,
-                    "name": category,
+                    "name": "Radio",
                     "duration": "",
                     "file": `${audioUrl}`
                     //"file": "https://sayingthings.s3.amazonaws.com/vo-audio/68c5aec6-64a0-4ebe-bc12-d0c8789961b4_RadioNathanPulsVoiceOvermp3"
                 }, {    
                     "track": 3,
-                    "name": category,
-                    //"name": "Narration",
+                    "name": "Narration",
                     "duration": "",
                     "file": "https://sayingthings.s3.amazonaws.com/vo-audio/e64c7cf3-7899-47db-8cc9-60d9179de0dd_NarrationNathanPulsVoiceOvermp3"
                 }, {
