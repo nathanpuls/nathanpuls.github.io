@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>nathanpuls.com</title>
+    <title>Nathan Puls</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -21,6 +21,7 @@ font-family: 'Poppins', sans-serif;
         padding: 10px;
         border: 2px solid black;
         text-decoration: none;
+        background-color: white;
         color: black;
         font-family: 'Poppins', sans-serif; /* Set font family to Poppins */
         font-weight: bold;
@@ -33,17 +34,47 @@ font-family: 'Poppins', sans-serif;
       
       /* Style for the container */
       .container {
-        background-color: white;
+        background-color: transparent;
         padding: 20px;
+      }
+
+      img {
+  border-radius: 50%;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+        
+        background-color: #000000;
+        background-image: linear-gradient(45deg, #00bfff, #d1ecf1, #f8e9a1);
+        animation: moveBackground 20s ease infinite;
+      }
+
+      @keyframes moveBackground {
+        0% {
+          background-position: 0 0;
+        }
+        50% {
+          background-position: 100% 100%;
+        }
+        100% {
+          background-position: 0 0;
+        }
       }
     </style>
   </head>
   <body>
-    <h1>nathanpuls.com</h1>
+    <h1>Nathan Puls</h1>
+    <img src="https://d1fdloi71mui9q.cloudfront.net/f4SK02PsSpKohi88FCLI_N9iojuo9SQwR1pEu" alt="Image description" width="100" height="100">
+
     <div class="container">
       <a href="https://sayingthings.com" class="link">Voice Over</a>
       <a href="https://linksaw.com" class="link">Linksaw</a>
-      <a href="https://www.tumblr.com/sayingthings" class="link">Comics</a>
+      <a href="https://blakeremake.com" class="link">Blake Remake</a>
       <a href="https://sayingthings.com/contact" class="link">Contact</a>
     </div>
   </body>
