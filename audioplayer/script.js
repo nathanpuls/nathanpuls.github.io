@@ -5,16 +5,24 @@
 //Bubble Fetch
       // Get the user ID from the URL parameter
       const urlParams = new URLSearchParams(window.location.search);
-      const uid = urlParams.get('uid');
+      let uid = urlParams.get('uid');
+      let myUid = '';
 
 // Get the DOM element to display the value
 const uidElement = document.getElementById('uid');
 
+const myUidElement = document.getElementById('myUid');
+
 // Set the value to the innerHTML of the DOM element
 uidElement.innerHTML = uid;
 
+
    // Construct the API endpoint URL
-const apiUrl = `https://linksaw.com/version-test/api/1.1/obj/vob-audio?constraints=[{"key":"uid","constraint_type":"equals","value":"1643919725090x169839524417895170"}]`;
+//const apiUrl = `https://linksaw.com/version-test/api/1.1/obj/vob-audio?constraints=[{"key":"uid","constraint_type":"equals","value":"1643919725090x169839524417895170"}]`;
+const apiUrl = `https://linksaw.com/version-test/api/1.1/obj/vob-audio?constraints=[{"key":"uid","constraint_type":"equals","value":"${uid}"}]`;
+
+myUid = apiUrl;
+myUidElement.innerHTML = myUid;
 
 let audioUrls = [];
 
