@@ -1,24 +1,4 @@
 /* Theming */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
-
-:root{
-    --white: #f9f9f9;
-    --black: #36383F;
-    --grey: #85888C;
-}
-
-/* Reset */
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body{
-    background-color: var(--white);
-    font-family: "Poppins", sans-serif;
-}
-/* Theming */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
 
 :root{
@@ -89,9 +69,9 @@ ul{
 
 .menu a{
     display: block;
-    padding: 25px 25px;
+    padding: 30px;
     color: var(--blue);
-  font-size: 25px;
+  font-size: 18px;
 
 }
 
