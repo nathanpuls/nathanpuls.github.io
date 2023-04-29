@@ -1,0 +1,30 @@
+.navbar-toggler {
+    box-shadow: none;
+    outline: none;
+    border: none;
+  }
+  .navbar-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+  }
+  
+  .content-wrapper {
+    padding-top: 100px; /* Change 80px to the height of your navbar plus any additional margin or padding you want */
+  }
+  /* Set a margin-top on elements that match the anchor link target */
+:target:before {
+    content: "";
+    display: block;
+    height: 100px; /* Adjust this value to match the height of your fixed navbar */
+    margin: -100px 0 0; /* Adjust this value to match the height of your fixed navbar */
+  }
+  
+  /* Adjust the scroll margin of anchor links */
+  a[href^="#"] {
+    scroll-margin-top: 90px; /* Adjust this value to match the height of your fixed navbar */
+  }
+  
+  
