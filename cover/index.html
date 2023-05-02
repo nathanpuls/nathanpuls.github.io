@@ -36,13 +36,44 @@
       </header>
 
       <main role="main" class="inner cover">
+        <img src="../img/profile-cartoon-no-bg.png" alt="me" width="200px">
         <h1 class="cover-heading">Hey, I'm Nathan.</h1>
         <p class="lead">Thanks for stopping by. You have two neat links to click on. Only one works right now</p>
         <p class="lead">
           <a href="https://sayingthings.com" class="btn btn-lg btn-secondary mb-2">Voice Over</a>
-          <a href="#" class="btn btn-lg btn-secondary mb-2">Web Projects</a>
+          <a href="#full" class="btn btn-lg btn-secondary mb-2">Web Projects</a>
 
         </p>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-lg btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Web Projects
+  </button>
+  
+  <!-- Full screen modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content bg-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Web Projects</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <a href="https://sayingthings.com" class="btn btn-lg btn-secondary mb-2">Voice Over</a>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+  
       </main>
 
       <footer class="mastfoot mt-auto">
