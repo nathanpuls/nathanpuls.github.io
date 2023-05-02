@@ -11,8 +11,9 @@
 ================================================== */
 
 :root {
-    --audio-hover-bg: #b9ddfc;
+    --audio-hover-bg: rgba(0, 142, 204, 0.1);
 }
+
 
 html,body {
 -webkit-font-smoothing:antialiased;
