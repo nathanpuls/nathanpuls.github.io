@@ -4,14 +4,16 @@
 /* Font Family
 ================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"); */
 
 
 /* Global Styles
 ================================================== */
 
 :root {
-    --audio-hover-bg: rgba(0, 142, 204, 0.1);
+  --main-color: #008ECC; /*olympic blue: https://louisem.com/417898/blue-hex-codes */
+
+  --audio-hover-bg: rgba(0, 142, 204, 0.1);
 }
 
 
@@ -21,9 +23,9 @@ html,body {
 /*background-color:#0665a2;*/
 background-color:#ffffff;
 
-color:#000000;
+color:black;
 font-size:1rem;
-font-family:"Source Sans Pro", arial, sans-serif;
+/* font-family:"Source Sans Pro", arial, sans-serif; */
 font-weight:400;
 letter-spacing:.025rem;
 line-height:1.618;
@@ -220,8 +222,9 @@ padding:0;
 .plyr--audio .plyr__controls {
 background-color:transparent;
 border:none;
-color:#000000;
-font-family:"Source Sans Pro", arial, sans-serif;
+color:var(--main-color);
+/* font-family:"Source Sans Pro", arial, sans-serif; */
+
 padding:20px 20px 20px 13px;
 width:100%;
 }

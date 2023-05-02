@@ -7,6 +7,11 @@
   --alt-color: rgba(0, 142, 204, 0.7);
 }
 
+body {
+  font-family: 'Poppins', sans-serif;
+
+}
+
 .navbar-toggler {
   box-shadow: none;
   outline: none;

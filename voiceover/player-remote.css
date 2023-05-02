@@ -933,8 +933,8 @@
     display: block;
   }
   .plyr--audio .plyr__controls {
-    background: #fff;
-    background: var(--plyr-audio-controls-background, #fff);
+    background: white;
+    background: var(--plyr-audio-controls-background, white);
     border-radius: inherit;
     color: #4a5464;
     color: var(--plyr-audio-control-color, #4a5464);
@@ -949,8 +949,8 @@
       --plyr-audio-control-background-hover,
       var(--plyr-color-main, var(--plyr-color-main, var(--main-color)))
     );
-    color: #fff;
-    color: var(--plyr-audio-control-color-hover, #fff);
+    color: black;
+    color: var(--plyr-audio-control-color-hover, var(--main-color));
   }
   .plyr--full-ui.plyr--audio input[type="range"]::-webkit-slider-runnable-track {
     background-color: rgba(193, 200, 209, 0.6);
