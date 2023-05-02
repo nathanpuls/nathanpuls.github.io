@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+
+
 :root {
   --main-color: #008ECC; /*olympic blue: https://louisem.com/417898/blue-hex-codes */
   --alt-color: rgba(0, 142, 204, 0.7);
@@ -38,6 +42,9 @@ a[href^="#"] {
 
 .nav-item {
   font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+
+
 }
 
 .nav-item {
@@ -71,10 +78,13 @@ h4 {
   padding-bottom: 10px;
   align-items: center;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: rgb(89, 87, 87);
   /* text-transform: uppercase; */
   font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+
+
 }
 
 .about-intro {
