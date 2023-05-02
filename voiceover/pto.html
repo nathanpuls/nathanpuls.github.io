@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PTO Bank Calculator</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>PTO Bank Calculator</h1>
+      <p>Starting balance: <span id="balance">50</span> hours</p>
+      <p>Monthly addition: 14 hours</p>
+      <label for="subtract-input">Subtract hours:</label>
+      <input type="number" id="subtract-input" min="1" max="999" value="1" />
+      <button id="subtract-btn">Subtract</button>
+      <br /><br />
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Starting Balance</th>
+            <th>Subtract Hours</th>
+            <th>Projected Balance</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const startingBalance = 50;
+      const monthlyAddition = 14;
+
+      let balance = startingBalance;
+
+      function updateTable() {
+        const tbody = document.querySelector("#table-body");
+        tbody.innerHTML = "";
+
+        for (let i = 0; i < 12; i++) {
+          const month = new Date().getMonth() + i + 1;
+          const year = new Date().getFullYear();
+          const startingBalanceCell = `<td>${balance}</td>`;
+          const subtractHours = document.querySelector("#subtract-input").value * 8;
+          balance -= subtractHours;
+          const projectedBalance = balance + monthlyAddition;
+
+          const projectedBalanceCell = `<td>${projectedBalance}</td>`;
+          tbody.innerHTML += `
+          <tr>
+            <td>${month}/${year}</td>
+            ${startingBalanceCell}
+            <td>${subtractHours}</td>
+            ${projectedBalanceCell}
+          </tr>
+          `;
+        }
+        balance += monthlyAddition;
+        document.querySelector("#balance").textContent = balance;
+      }
+
+      document.querySelector("#subtract-btn").addEventListener("click", updateTable);
+
+      updateTable();
+    </script>
+  </body>
+</html>
