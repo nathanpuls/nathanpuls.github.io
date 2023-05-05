@@ -1,0 +1,319 @@
+/* 2.0
+================================================== */
+
+/* Font Family
+================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+
+
+/* Global Styles
+================================================== */
+
+html,body {
+-webkit-font-smoothing:antialiased;
+-webkit-text-size-adjust:100%;
+/*background-color:#0665a2;*/
+background-color:#ffffff;
+
+color:#000000;
+font-size:1rem;
+font-family:"Source Sans Pro", arial, sans-serif;
+font-weight:400;
+letter-spacing:.025rem;
+line-height:1.618;
+padding:1rem 0;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+
+
+*,::before,::after {
+box-sizing:border-box;
+}
+
+* {
+-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+-webkit-tap-highlight-color:transparent;
+}
+
+
+/* Setup Audio
+================================================== */
+
+.container { position:relative; margin:0 auto; max-width:800px; width:100%; }
+.column { width:inherit; }
+
+/* Setup Video
+================================================== */
+
+/*.video-wrapper {
+    position: relative;
+    padding-top: 30px;
+    height: 0;
+  }
+  */
+  
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+
+
+/* Typography / Links
+================================================== */
+
+p { color:#000000; display:block; font-size:.9rem; font-weight:400; margin:0 0 2px; }
+
+a,a:visited { color:#3EB3FE; outline:0; text-decoration:underline; }
+a:hover,a:focus { color:##3EB3FE; }
+p a,p a:visited { line-height:inherit; }
+
+
+/* Misc.
+================================================== */
+
+.add-bottom { margin-bottom:2rem !important; }
+.left { float:left; }
+.right { float:right; }
+.center { text-align:center; }
+.hidden { display:none; }
+
+.no-support {
+margin:2rem auto;
+text-align:center;
+width:90%;
+}
+
+
+/* Audio Player Styles
+================================================== */
+
+audio {
+display:none;
+}
+
+#audiowrap,
+#plwrap {
+margin:0 auto;
+}
+
+#tracks {
+font-size:0;
+position:relative;
+text-align:center;
+}
+
+#nowPlay {
+display:block;
+font-size:0;
+}
+
+#nowPlay span {
+display:inline-block;
+font-size:1.05rem;
+vertical-align:top;
+}
+
+#nowPlay span#npAction {
+padding:21px;
+width:30%;
+}
+
+#nowPlay span#npTitle {
+padding:21px;
+text-align:left;
+width:70%;
+font-weight: bold;
+}
+
+#plList li {
+cursor:pointer;
+display:block;
+margin:0;
+padding:21px 0;
+}
+
+/*hover color bm*/
+#plList li:hover {
+/*background-color:rgb(93, 157, 217, 0.5);*/
+}
+
+.plItem {
+position:relative;
+}
+
+.plTitle {
+left:50px;
+overflow:hidden;
+position:absolute;
+right:65px;
+text-overflow:ellipsis;
+top:0;
+white-space:nowrap;
+}
+
+.plNum {
+padding-left:21px;
+width:25px;
+}
+
+.plLength {
+padding-left:21px;
+position:absolute;
+right:21px;
+top:0;
+}
+
+.plSel,
+.plSel:hover {
+    /*playing color bm*/
+background-color:rgba(62, 179, 254, 0.1);
+color:#000000;
+cursor:default !important;
+}
+
+#tracks a {
+border-radius:3px;
+color:#000000;
+cursor:pointer;
+display:inline-block;
+font-size:2.3rem;
+height:40px;
+line-height:.2;
+margin:0 5px 30px;
+padding:12px;
+text-decoration:none;
+transition:background .3s ease;
+}
+
+#tracks a:hover,
+#tracks a:active {
+background-color:rgba(0, 0, 0, 0.1);
+color:#000000;
+}
+
+#tracks a::-moz-focus-inner {
+border:0;
+padding:0;
+}
+
+
+/* Plyr Overrides
+================================================== */
+
+.plyr--audio .plyr__controls {
+background-color:transparent;
+border:none;
+color:#000000;
+font-family:"Source Sans Pro", arial, sans-serif;
+padding:20px 20px 20px 13px;
+width:100%;
+}
+
+a.plyr__controls__item.plyr__control:hover,
+.plyr--audio .plyr__controls button:hover,
+.plyr--audio .plyr__controls button.tab-focus:focus,
+.plyr__play-large {
+background-color:rgba(0, 0, 0, .1);
+}
+
+.plyr__progress--played,
+.plyr__volume--display {
+color:rgba(0, 0, 0, .1);
+}
+
+.plyr--audio .plyr__progress--buffer,
+.plyr--audio .plyr__volume--display {
+background-color:rgba(0, 0, 0, .1);
+}
+
+.plyr--audio .plyr__progress--buffer {
+color:rgba(0, 0, 0, .1);
+}
+
+.plyr__controls .plyr__controls__item.plyr__time {
+font-size:14px;
+margin-left:7px;
+}
+
+
+/* Media Queries
+================================================== */
+
+@media only screen and (max-width:600px) {
+    #nowPlay span#npAction { display:none; }
+    #nowPlay span#npTitle { display:block; text-align:center; width:100%; }
+}
+
+/* VIDEO popup
+================================================== */
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 22px; /* add padding to the top of the modal */
+    max-width: 100%;
+
+  }
+  
+  .modal-content {
+    background-color: #00000000;
+    margin: auto;
+    padding: 10;
+    border: none;
+    width: fit-content; /* set the width of the modal to fit its content */
+    height: fit-content; /* set the height of the modal to fit its content */
+    max-width: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
+  }
+  
+  .close {
+    color: #ffffff;
+    float: right;
+    padding-left: 5px;
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #freeletics {
+    background-color: white;
+    color: #222;
+    border: 1px solid #3EB3FE;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+  }
+
+  iframe {
+    max-width: 100%;
+    
+  }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fetch Audio</title>
+</head>
+<body>
+	<audio id="audioPlayer" controls>
+		<source id="audioSource" src="" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+
+	<script>
+		// Get user ID from URL parameter
+		const urlParams = new URLSearchParams(window.location.search);
+		const userId = urlParams.get('userid');
+
+		// Make API request to Bubble to get audio data
+		fetch(`https://linksaw.com/version-test/api/1.1/obj/vob-audio]`)
+			.then(response => response.json())
+			.then(data => {
+				// Get the first audio file URL from the response
+				const audioUrl = data[0].file.url;
+
+				// Set the audio source URL
+				document.getElementById('audioSource').src = audioUrl;
+
+				// Play the audio
+				document.getElementById('audioPlayer').play();
+			})
+			.catch(error => console.error(error));
+	</script>
+</body>
+</html>

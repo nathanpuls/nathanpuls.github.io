@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Example HTML file with JavaScript</title>
+	<script src="path/to/your/script.js"></script>
+</head>
+<body>
+	<h1>Example HTML file with JavaScript</h1>
+
+	<div id="key"></div>
+</body>
+</html>
+
+<script>
+// Get the query parameters from the URL
+const urlParams = new URLSearchParams(window.location.search);
+
+// Get the value of the "key" parameter
+const keyValue = urlParams.get('key');
+
+// Get the DOM element to display the value
+const keyElement = document.getElementById('key');
+
+// Set the value to the innerHTML of the DOM element
+keyElement.innerHTML = keyValue;
+</script>
