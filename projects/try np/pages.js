@@ -1,6 +1,7 @@
 const pages = [
   
   'nav', 
+  
   'about', 
   'more', 
   'footer'

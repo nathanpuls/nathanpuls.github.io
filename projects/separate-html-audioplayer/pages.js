@@ -1,6 +1,7 @@
 const pages = [
   
   'nav', 
+  'audioplayer',
   'about', 
   'more', 
   'footer'
