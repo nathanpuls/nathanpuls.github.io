@@ -1,0 +1,12 @@
+:root {
+    --color: blue;
+  }
+  body {
+    color: var(--color);
+  }
+
+
+  body {
+    background-color: #ddebb6; /* Replace with your desired color */
+  }
+  

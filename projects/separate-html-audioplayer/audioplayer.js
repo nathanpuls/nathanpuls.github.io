@@ -1,5 +1,5 @@
 
-//let user = 'timmymorgan';
+
 var commercialDemo = 'https://sayingthings.s3.us-east-1.amazonaws.com/timmymorgan-audio/b4890ba8-73d8-4972-8dfc-6556d069b2e9_CommercialTimmyMorganVoiceOvermp3';
 var animationDemo = 'https://sayingthings.s3.us-east-1.amazonaws.com/timmymorgan-audio/cacaea63-50a7-4a08-bdfc-0ed2d8350f22_AnimationTimmyMorganVoiceOvermp3';
 var corporateDemo = 'https://sayingthings.s3.us-east-1.amazonaws.com/timmymorgan-audio/ac284d27-dff5-4447-8208-78b80f3444df_TimMorganELEARNINGDEMOmp3';
@@ -9,9 +9,7 @@ var britishDemo = 'https://sayingthings.s3.us-east-1.amazonaws.com/timmymorgan-a
 
 const apiUrl = `https://linksaw.com/api/1.1/obj/timmy-morgan-audio`;
 
-//const apiUrl = `https://linksaw.com/api/1.1/obj/timmy-morgan-audio?constraints=[{"key":"audio-username","constraint_type":"equals","value":"${user}"}]`;
 
-//myUidElement.innerHTML = myUid;
 
 let audioUrls = [];
 
