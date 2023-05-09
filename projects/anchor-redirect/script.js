@@ -2,8 +2,8 @@ const apiUrl = 'https://linksaw.com/api/1.1/obj/linksaw-link?constraints=[{"key"
 
 
 
-const baseurl = 'https://';
-const endurl = '.saw.is';
+const baseurl = 'https://nathanpuls.com/projects/anchor-redirect/anchor/#';
+
 const linkDiv = document.getElementById('links');
 
 const hash = window.location.hash.substring(1); // extract the anchor part of the URL
@@ -30,7 +30,7 @@ fetch(apiUrl)
       const div = document.createElement('div');
       const link = document.createElement('a');
       link.textContent = `${result.name}`;
-      link.href = `${baseurl}${result.name}${endurl}`;
+      link.href = `${baseurl}${result.name}`;
       div.appendChild(link);
       linkDiv.appendChild(div);
     });
