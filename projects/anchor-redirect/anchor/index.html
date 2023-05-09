@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Saw</title>
+</head>
+<body>
+    <!-- Your HTML content goes here -->
+    <!-- <a href="../anchor/#redirect">Redirect</a> -->
+
+
+
+
+    
+
+    <script>
+        if (window.location.href === 'http://127.0.0.1:5500/anchor/#redirect') {
+          window.location.href = 'https://www.google.com';
+        }
+        </script>
+
+            
+            <script>
+/* const apiUrl = 'https://linksaw.com/api/1.1/obj/linksaw-link'; */
+
+const apiUrl = 'https://linksaw.com/api/1.1/obj/linksaw-link?constraints=[{"key":"userid","constraint_type":"equals","value":"1616949060505x340236627561480100"},{"key":"tag","constraint_type":"equals","value":"fast"}]';
+
+
+
+fetch(apiUrl)
+  .then(response => response.json())
+  .then(data => {
+    const linkMap = {};
+    data.response.results.forEach(result => {
+      const name = result['name'];
+      const url = result['url'];
+      linkMap[name] = url;
+    });
+    
+    const hash = window.location.hash.substring(1); // remove the # symbol
+    if (hash && linkMap[hash]) {
+      window.location.href = linkMap[hash];
+    }
+  });
+</script>
+
+
+        </script>
+
+      <!--   <script>
+            const apiUrl = 'https://linksaw.com/api/1.1/obj/linksaw-link';
+
+
+fetch(apiUrl)
+  .then(response => response.json())
+  .then(data => {
+    const results = data.response.results.map(result => {
+      const name = result['name'];
+      const url = result['url'];
+      return { name, url };
+      
+    });
+        </script> -->
+        
+</body>
+</html>
