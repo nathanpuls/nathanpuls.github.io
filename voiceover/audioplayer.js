@@ -54,16 +54,18 @@ fetch(apiUrl)
               extension = '',
               tracks = [{
                   "track": 1,
-                  "name": getaudio[0].category,
+                  //"name": getaudio[0].category,
+                    "name": 'Commercial',
                   "duration": "",
                   //"file": commercialDemo
                  // "file": getaudio[0].audioUrl
                   "file": "https://sayingthings.s3.amazonaws.com/vo-audio/cfa8e725-8bb0-4e9b-864c-c67e5be8c28a_CommercialNathanPulsVoiceOvermp3"
               }, {
                   "track": 2,
-                  "name": getaudio[1].category,
+                 // "name": getaudio[1].category,
+                    "name": 'Radio',
                   "duration": "",
-                //  "file": animationDemo
+                //  "file": whatevernameofDemo
                  // "file": getaudio[1].audioUrl
                   "file": "https://sayingthings.s3.amazonaws.com/vo-audio/68c5aec6-64a0-4ebe-bc12-d0c8789961b4_RadioNathanPulsVoiceOvermp3"
               }, {    
