@@ -1,38 +1,120 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Link to Page</title>
-    <!-- BOOTSTRAP CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-      crossorigin="anonymous"
-    />
-    <!-- BOOTSTRAP ICONS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
-      integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <!-- MY STYLESHEET -->
-    <link rel="stylesheet" href="style.css" />
-    <style>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Link to Page</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" href="style.css" />
+<style>
       .container {
         background-color: white;
+border: 1px solid white;
+
       }
     </style>
-  </head>
-  <body>
-    <div class="container pt-5" style="white-space: pre-wrap;">
-    <p id="message">Loading message...</p>
+  
+  
+</head>
+<body>
+    <!--NAV-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Paper</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a id="read-link" class="nav-link" href="#">Read</a>
+              </li>
+              <li class="nav-item">
+                <a id="write-link" class="nav-link" href="#">Write</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+
+    <!--WRITE-->
+
+    <div id='block-write' class="container mt-0 pt-0" style="white-space: pre-wrap; max-width: 900px;">
+        <textarea id="textarea" class="form-control m-2 pb-0" rows="10"></textarea>
+
+        <button id="encodeBtn" class="primary-button">Encode</button>
+
+      
+        <div class="row">
+          <div class="col-sm-6 text-left abg-primary">
+            <div class="d-flex justify-content-start">
+              <button id="write" type="button" class="btn btn-primary btn-block" onclick="copyToClipboard1()">Copy Write</button>
+            </div>
+          </div>
+          <div class="col-sm-6 text-right abg-secondary">
+            <div class="d-flex justify-content-end">
+              <button id='write2' type="button" class="btn btn-info btn-block" onclick="copyUrlToClipboard2()">Copy URL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+     
+    <!--READ-->
+
+    <div id='block-read'>
+  <div class="container mt-0 pt-0" style="white-space: pre-wrap; max-width: 900px;">
+  <p id="message" class="m-0 pb-0">Loading message...</p>
+  <div class="row">
+    <div class="col-sm-6 text-left abg-primary">
+      <div class="d-flex justify-content-start">
+      <button id="read" type="button" class="btn btn-primary btn-block" onclick="copyToClipboard()">Copy Text</button>
+    </div>
+    </div>
+    <div class="col-sm-6 text-right abg-secondary">
+      <div class="d-flex justify-content-end">
+      <button id="readurl" type="button" class="btn btn-info btn-block" onclick="copyUrlToClipboard()">Copy URL</button>
+    </div>
+    </div>
   </div>
-    <script>
+</div>
+</div>
+
+
+<script>
+function copyToClipboard() {
+  const message = document.getElementById("message").innerText;
+  navigator.clipboard.writeText(message);
+  
+    const buttonread = document.getElementById("read");
+  buttonread.textContent = "Copied!";
+  setTimeout(() => {
+    buttonread.textContent = "Copy Text";
+  }, 2000);
+}
+
+  
+</script>
+  <script>
+function copyUrlToClipboard() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url);
+
+  const buttonurl = document.getElementById("readurl");
+  buttonurl.textContent = "Copied!";
+  setTimeout(() => {
+    buttonurl.textContent = "Copy URL";
+  }, 2000);
+}
+</script>
+<script>
      const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const message = urlParams.get('m');
@@ -49,32 +131,14 @@ messageDiv.innerHTML = clickableMessage;
 
 
       </script>
-      
-    
-  
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
-    <!-- BOOTSTRAP JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-      crossorigin="anonymous"
-    ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- JQUERY -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
-      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+<script src="fetch.js" defer></script>
+<script src="write.js"></script>
 
-
-    <!-- PAGE LOGIC -->
-    <script src="fetch.js" defer></script>
-
-    <!-- MY SCRIPT -->
-    <script src="script.js" defer></script>
-
-  </body>
+<script src="script.js" defer></script>
+</body>
 </html>

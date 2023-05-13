@@ -1,0 +1,14 @@
+:root {
+    --color: black;
+  }
+  body {
+    color: var(--color);
+    align-items: center;
+    text-align: center;
+  }
+
+
+  body {
+    background-color: white; /* Replace with your desired color */
+  }
+  
