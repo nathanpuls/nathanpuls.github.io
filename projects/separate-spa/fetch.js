@@ -78,7 +78,7 @@ window.addEventListener("hashchange", handleHashChange);
 
 //CLOSE OFF CANVAS
 
-const offCanvas = document.querySelector("#offcanvas");
+const offCanvas = document.querySelector("#offcanvasExample");
 document.addEventListener("click", function (event) {
   if (event.target.closest("#menu-button, #offcanvas") === null && offCanvas.classList.contains("show")) {
     offCanvas.classList.remove("show");
