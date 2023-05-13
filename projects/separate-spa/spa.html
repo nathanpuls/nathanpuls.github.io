@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Single Page App</title>
+    <style>
+      /* Some basic CSS styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      nav {
+        background-color: #333;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 20px;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
+      #content {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#page1">Page 1</a>
+      <a href="#page2">Page 2</a>
+      <a href="#page3">Page 3</a>
+    </nav>
+    <div id="content">
+      <div id="page1">
+        <h1>Page 1</h1>
+        <p>This is the content for Page 1.</p>
+      </div>
+      <div id="page2">
+        <h1>Page 2</h1>
+        <p>This is the content for Page 2.</p>
+      </div>
+      <div id="page3">
+        <h1>Page 3</h1>
+        <p>This is the content for Page 3.</p>
+      </div>
+    </div>
+    <script>
+      // Hide all content divs except the first one
+      const pages = document.querySelectorAll("#content > div");
+      for (let i = 1; i < pages.length; i++) {
+        pages[i].style.display = "none";
+      }
+
+      // Add event listeners to navigation links
+      const links = document.querySelectorAll("nav a");
+      for (let i = 0; i < links.length; i++) {
+        links[i].addEventListener("click", function (e) {
+          e.preventDefault();
+          const pageId = this.getAttribute("href");
+          showPage(pageId);
+        });
+      }
+
+      // Function to show the selected page and hide the others
+      function showPage(pageId) {
+        for (let i = 0; i < pages.length; i++) {
+          if (pages[i].getAttribute("id") === pageId.substr(1)) {
+            pages[i].style.display = "block";
+          } else {
+            pages[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+:root {
+    --color: black;
+    --btn: black;
+  }
+  body {
+    color: var(--color);
+    align-items: center;
+    text-align: left;
+  }
+
+  #home-btn {
+    text-decoration: underline;
+  }
+
+
+  body {
+    background-color: white; /* Replace with your desired color */
+  }
+  
+#app {
+  background-color: rgb(255, 255, 255);
+}
+
+#links {
+  /* border-right: 1px solid black;
+  height: 100vh;
+  width: 50px; */
+  text-transform: capitalize;
+
+
+  
+}
+
+  /*LINKS*/
+
+  a {
+    display: inline-block;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--btn);
+    background-color: transparent;
+    border: 0px solid #6c757d;
+    border-radius: 0.25rem;
+    text-decoration: underline;
+    margin: 0.2rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  a:hover {
+    color: #333;
+    /* background-color: var(--btn);
+    border-color: var(--btn); */
+  }
+  
+  a:focus, a.focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+  }
+  
+  a.disabled, a:disabled {
+    color: #6c757d;
+    background-color: transparent;
+    border-color: #6c757d;
+  }
+  
+  a:not([href]):not([class]), a:not([href]):not([class]):hover, a:not([href]):not([class]):focus, a:not([href]):not([class]):focus:hover {
+    color: #6c757d;
+    background-color: transparent;
+    border-color: #6c757d;
+  }
+
+  
+  /*UL*/
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
