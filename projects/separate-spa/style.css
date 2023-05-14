@@ -9,7 +9,7 @@
   }
 
   #home-btn {
-    text-decoration: underline;
+    /* text-decoration: underline; */
   }
 
 
@@ -26,10 +26,17 @@
   height: 100vh;
   width: 50px; */
   text-transform: capitalize;
-
-
-  
+  color: red;
 }
+
+li {
+  display: block;
+  color: red;
+}
+ul li {
+  display: block;
+}
+
 
   /*LINKS*/
 
@@ -43,7 +50,7 @@
     background-color: transparent;
     border: 0px solid #6c757d;
     border-radius: 0.25rem;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     margin: 0.2rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
