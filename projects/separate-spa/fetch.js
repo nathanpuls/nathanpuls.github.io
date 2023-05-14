@@ -84,3 +84,16 @@ document.addEventListener("click", function (event) {
     offCanvas.classList.remove("show");
   }
 });
+
+// Add touchstart event listener to document to close off canvas on any touch
+document.addEventListener("touchstart", function(event) {
+  if (!event.target.matches("#offcanvas.show, #open-menu")) {
+    hideOffCanvas();
+  }
+});
+
+
+
+
+
+
