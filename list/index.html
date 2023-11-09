@@ -1,94 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <title>Dynamic Data from Raindrop.io API</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-
     <style>
         body {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align content to the top */
-    min-height: 100vh;
-    margin: 0;
-}
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align content to the top */
+            min-height: 100vh;
+            margin: 0;
+        }
 
-#container {
-    background-color: white;
-    padding: 20px;
-    max-width: 600px; /* Set a maximum width for better readability on smaller screens */
-    width: 100%;
-}
+        #container {
+            background-color: white;
+            padding: 20px;
+            max-width: 600px; /* Set a maximum width for better readability on smaller screens */
+            width: 100%;
+        }
 
-#contentContainer {
-    text-align: left;
-}
+        #contentContainer {
+            text-align: left;
+        }
 
-.itemContainer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid white;
-    border-radius: 5px;
-}
+        .itemContainer {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
 
-.coverImage {
-    max-width: 100px;
-    border-radius: 5px;
-    margin-right: 10px;
-}
+        .coverImage {
+            max-width: 100px;
+            border-radius: 5px;
+            margin-right: 10px;
+            cursor: pointer; /* Add a pointer cursor to indicate the cover image is clickable */
+        }
 
-.titleContainer {
-    font-family: 'Poppins', sans-serif;
-    color: black;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 500;
-    margin: 10px;
-}
+        .titleContainer {
+            font-family: 'Poppins', sans-serif;
+            color: black;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 500;
+            margin: 10px;
+        }
 
-h1 {
-    font-family: 'Poppins', sans-serif;
-    color: black;
-    cursor: pointer;
-    font-size: 30px;
-    font-weight: bold;
-    margin: 10px;
-}
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: black;
+            cursor: pointer;
+            font-size: 30px;
+            font-weight: bold;
+            margin: 10px;
+        }
 
-.titleContainer:hover {
-    color: #333;
-}
+        .titleContainer:hover {
+            color: #333;
+        }
 
-@media screen and (max-width: 768px) {
-    .itemContainer {
-        flex-direction: column;
-        text-align: center;
-    }
+        @media screen and (max-width: 768px) {
+            .itemContainer {
+                flex-direction: column;
+                text-align: center;
+            }
 
-    .coverImage {
-        max-width: 50%;
-        margin-right: 0;
-    }
+            .coverImage {
+                max-width: 100%;
+                margin-right: 0;
+            }
 
-    .titleContainer {
-        font-size: 18px;
-        margin: 5px;
-    }
+            .titleContainer {
+                font-size: 18px;
+                margin: 5px;
+            }
 
-    #container {
-        padding: 10px; /* Reduce padding for smaller screens */
-    }
-}
-
+            #container {
+                padding: 10px; /* Reduce padding for smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
-  
     <div id="container">
         <div id="contentContainer">
             <h1>Links</h1>  
@@ -124,6 +122,11 @@ h1 {
                     const coverImage = document.createElement('img');
                     coverImage.classList.add('coverImage');
                     coverImage.src = cover;
+
+                    // Add a click event listener to open the link when the cover is clicked
+                    coverImage.addEventListener('click', () => {
+                        window.open(link, '_blank');
+                    });
 
                     const titleContainer = document.createElement('p');
                     titleContainer.classList.add('titleContainer');
