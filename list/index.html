@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Data from Raindrop.io API</title>
+</head>
+<body>
+    <div id="contentContainer">
+        <p id="titleContainer"></p>
+        <p id="linkContainer"></p>
+        <img id="coverImage" alt="Cover Image">
+    </div>
+
+    <script>
+        // Replace with your actual API endpoint and authorization header
+        const apiEndpoint = "https://api.raindrop.io/rest/v1/raindrops/39058753";
+        const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
+
+        const requestOptions = {
+            method: 'GET',
+            headers: new Headers({
+                "Authorization": authToken,
+            }),
+            redirect: 'follow'
+        };
+
+        fetch(apiEndpoint, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                // Extract data from the first item
+                const title = data.items[0].title;
+                const link = data.items[0].link;
+                const cover = data.items[0].cover;
+                
+                // Display the extracted data
+                const titleContainer = document.getElementById('titleContainer');
+                titleContainer.textContent = title;
+
+                const linkContainer = document.getElementById('linkContainer');
+                linkContainer.textContent = link;
+
+                const coverImage = document.getElementById('coverImage');
+                coverImage.src = cover;
+
+                // Redirect to the retrieved link
+                window.location.href = link;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    </script>
+</body>
+</html>
