@@ -2,17 +2,45 @@
 <html>
 <head>
     <title>Dynamic Data from Raindrop.io API</title>
+    <style>
+        #contentContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .itemContainer {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+        .coverImage {
+            max-width: 100px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .titleContainer {
+            font-family: 'Lato', sans-serif;
+            color: black;
+            cursor: pointer;
+            font-size: 20px; /* Adjust the font size */
+            font-weight: 500; /* Make it bold */
+        }
+      
+      .titleContainer:hover {
+    color: #333; /* Change the color to red on hover */
+}
+    </style>
 </head>
 <body>
     <div id="contentContainer">
-        <p id="titleContainer"></p>
-        <p id="linkContainer"></p>
-        <img id="coverImage" alt="Cover Image">
     </div>
 
     <script>
         // Replace with your actual API endpoint and authorization header
-        const apiEndpoint = "https://api.raindrop.io/rest/v1/raindrops/39058753";
+        const apiEndpoint = "https://api.raindrop.io/rest/v1/raindrops/39062556";
         const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
 
         const requestOptions = {
@@ -26,23 +54,32 @@
         fetch(apiEndpoint, requestOptions)
             .then(response => response.json())
             .then(data => {
-                // Extract data from the first item
-                const title = data.items[0].title;
-                const link = data.items[0].link;
-                const cover = data.items[0].cover;
-                
-                // Display the extracted data
-                const titleContainer = document.getElementById('titleContainer');
-                titleContainer.textContent = title;
+                const contentContainer = document.getElementById('contentContainer');
 
-                const linkContainer = document.getElementById('linkContainer');
-                linkContainer.textContent = link;
+                data.items.forEach(item => {
+                    const title = item.title;
+                    const link = item.link;
+                    const cover = item.cover;
 
-                const coverImage = document.getElementById('coverImage');
-                coverImage.src = cover;
+                    const itemContainer = document.createElement('div');
+                    itemContainer.classList.add('itemContainer');
 
-                // Redirect to the retrieved link
-                window.location.href = link;
+                    const coverImage = document.createElement('img');
+                    coverImage.classList.add('coverImage');
+                    coverImage.src = cover;
+
+                    const titleContainer = document.createElement('p');
+                    titleContainer.classList.add('titleContainer');
+                    titleContainer.textContent = title;
+                    titleContainer.addEventListener('click', () => {
+                        window.open(link, '_blank');
+                    });
+
+                    itemContainer.appendChild(coverImage);
+                    itemContainer.appendChild(titleContainer);
+
+                    contentContainer.appendChild(itemContainer);
+                });
             })
             .catch(error => {
                 console.error("Error:", error);
