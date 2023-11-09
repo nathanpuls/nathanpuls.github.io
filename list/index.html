@@ -33,12 +33,14 @@
             padding: 0px; /*was 10*/
             border: 1px solid white;
             border-radius: 5px;
+          background-color: #FAF9F6;
         }
 
         .coverImage {
             max-width: 70px; /*change to 100 to make visible*/
+          max-height: 50px;
             border-radius: 5px;
-            margin-right: 0px; /*was 10*/
+            margin: 10px;
             cursor: pointer; /* Add a pointer cursor to indicate the cover image is clickable */
         }
 
@@ -50,7 +52,7 @@
             font-weight: 500;
             margin: 10px;
           text-decoration: none; /* Remove the default underline */
-    border-bottom: 1px dotted #000; /* 1px dotted underline with black color */
+   /* border-bottom: 1px dotted #000; /* 1px dotted underline with black color */
         }
 
         h1 {
@@ -86,6 +88,12 @@
                 /*padding: 10px; /* Reduce padding for smaller screens */
             /*}
         }*/
+      /* Add this CSS to your stylesheet or in a <style> tag within your HTML */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
     </style>
 </head>
 <body>
