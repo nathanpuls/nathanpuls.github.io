@@ -1,25 +1,36 @@
-<script>
-  
-var myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94");
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirect to Dynamic Link</title>
+</head>
+<body>
+    <p id="linkContainer"></p>
 
-var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow'
-};
+    <script>
+        // Replace with your actual API endpoint and authorization header
+        const apiEndpoint = "https://api.raindrop.io/rest/v1/raindrops/39058753";
+        const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
 
-fetch("https://api.raindrop.io/rest/v1/raindrops/39058753", requestOptions)
-  .then(response => response.json())
-  .then(data => {
-    // Assuming 'data' is an array of Raindrop items, and you want to redirect to the first item
-    if (data && data.length > 0) {
-      const latestLink = data[0];
-      window.location.href = latestLink.link; // Redirect to the latest link
-    } else {
-      console.log("No Raindrops found.");
-    }
-  })
-  .catch(error => console.log('error', error));
+        const requestOptions = {
+            method: 'GET',
+            headers: new Headers({
+                "Authorization": authToken,
+            }),
+            redirect: 'follow'
+        };
 
-  </script>
+        fetch(apiEndpoint, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                // Extract the link from the first item
+                const link = data.items[0].link;
+                
+                // Redirect to the retrieved link
+                window.location.href = link;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    </script>
+</body>
+</html>
