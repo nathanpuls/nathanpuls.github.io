@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <title>Dynamic Data from Raindrop.io API</title>
+    <title>Links</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -30,15 +30,15 @@
             display: flex;
             align-items: center;
             margin-bottom: 10px;
-            padding: 10px;
+            padding: 0px; /*was 10*/
             border: 1px solid white;
             border-radius: 5px;
         }
 
         .coverImage {
-            max-width: 100px;
+            max-width: 0px; /*change to 100 to make visible*/
             border-radius: 5px;
-            margin-right: 10px;
+            margin-right: 0px; /*was 10*/
             cursor: pointer; /* Add a pointer cursor to indicate the cover image is clickable */
         }
 
@@ -49,6 +49,8 @@
             font-size: 20px;
             font-weight: 500;
             margin: 10px;
+          text-decoration: none; /* Remove the default underline */
+    border-bottom: 1px dotted #000; /* 1px dotted underline with black color */
         }
 
         h1 {
