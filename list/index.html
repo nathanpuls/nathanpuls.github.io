@@ -1,82 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Links</title>
+    <title>Dynamic Data from Raindrop.io API</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top */
+    min-height: 100vh;
+    margin: 0;
+}
 
-        #container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+#container {
+    background-color: white;
+    padding: 20px;
+    max-width: 600px; /* Set a maximum width for better readability on smaller screens */
+    width: 100%;
+}
 
-        #contentContainer {
-            text-align: left;
-        }
+#contentContainer {
+    text-align: left;
+}
 
-        .itemContainer {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid white;
-            border-radius: 5px;
-        }
+.itemContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
 
-        .coverImage {
-            max-width: 100px;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
+.coverImage {
+    max-width: 100px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
 
-        .titleContainer {
-            font-family: 'Poppins', sans-serif;
-            color: black;
-            cursor: pointer;
-            font-size: 20px;
-            font-weight: 500;
-            margin: 10px;
-        }
-      
-        h1 {
-            font-family: 'Poppins', sans-serif;
-            color: black;
-            cursor: pointer;
-            font-size: 30px;
-            font-weight: bold;
-            margin: 10px;
-        }
+.titleContainer {
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 10px;
+}
 
-        .titleContainer:hover {
-            color: #333;
-        }
+h1 {
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 10px;
+}
 
-        @media screen and (max-width: 768px) {
-            .itemContainer {
-                flex-direction: column;
-                text-align: center;
-            }
+.titleContainer:hover {
+    color: #333;
+}
 
-            .coverImage {
-                max-width: 100%;
-                margin-right: 0;
-            }
+@media screen and (max-width: 768px) {
+    .itemContainer {
+        flex-direction: column;
+        text-align: center;
+    }
 
-            .titleContainer {
-                font-size: 18px;
-                margin: 5px;
-            }
-        }
+    .coverImage {
+        max-width: 50%;
+        margin-right: 0;
+    }
+
+    .titleContainer {
+        font-size: 18px;
+        margin: 5px;
+    }
+
+    #container {
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+}
+
     </style>
 </head>
 <body>
