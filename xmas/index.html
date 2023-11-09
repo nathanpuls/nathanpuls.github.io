@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>Links</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align content to the top */
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            background-color: white;
+            padding: 20px;
+            max-width: 600px; /* Set a maximum width for better readability on smaller screens */
+            width: 100%;
+        }
+
+        #contentContainer {
+            text-align: left;
+        }
+
+        .itemContainer {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 0px; /*was 10*/
+            border: 1px solid white;
+            border-radius: 5px;
+          background-color: #e6e6e6;
+        }
+
+        .coverImage {
+            max-width: 0px; /*change to 100 to make visible*/
+            border-radius: 5px;
+            margin-right: 0px; /*was 10*/
+            cursor: pointer; /* Add a pointer cursor to indicate the cover image is clickable */
+        }
+
+        .titleContainer {
+            font-family: 'Poppins', sans-serif;
+            color: black;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 500;
+            margin: 10px;
+          text-decoration: none; /* Remove the default underline */
+   /* border-bottom: 1px dotted #000; /* 1px dotted underline with black color */
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: black;
+            cursor: pointer;
+            font-size: 30px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .titleContainer:hover {
+            color: #333;
+        }
+
+        /*@media screen and (max-width: 768px) {
+            .itemContainer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .coverImage {
+                max-width: 0%; /*was 100*/
+                /*margin-right: 0;
+            }
+
+            .titleContainer {
+                font-size: 18px;
+                margin: 5px;
+            }
+
+            #container /*{*/
+                /*padding: 10px; /* Reduce padding for smaller screens */
+            /*}
+        }*/
+      /* Add this CSS to your stylesheet or in a <style> tag within your HTML */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="contentContainer">
+           
+        </div>
+    </div>
+
+    <script>
+        // Replace with your actual API endpoint and authorization header
+      const collectionId = "38168701"
+        const apiEndpoint = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
+      const apiEndpointCollection = `https://api.raindrop.io/rest/v1/collection/${collectionId}`;
+        const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
+
+        const requestOptions = {
+            method: 'GET',
+            headers: new Headers({
+                "Authorization": authToken,
+            }),
+            redirect: 'follow'
+        };
+
+       // First fetch for apiEndpoint...
+fetch(apiEndpoint, requestOptions)
+    .then(response => response.json())
+    .then(data => {
+        const contentContainer = document.getElementById('contentContainer');
+
+        data.items.forEach(item => {
+            const title = item.title;
+            const link = item.link;
+            const cover = item.cover;
+
+            const itemContainer = document.createElement('div');
+            itemContainer.classList.add('itemContainer');
+
+            const coverImage = document.createElement('img');
+            coverImage.classList.add('coverImage');
+            coverImage.src = cover;
+
+            // Add a click event listener to open the link when the cover is clicked
+            coverImage.addEventListener('click', () => {
+                window.open(link, '_blank');
+            });
+
+            const titleContainer = document.createElement('p');
+            titleContainer.classList.add('titleContainer');
+            titleContainer.textContent = title;
+            titleContainer.addEventListener('click', () => {
+                window.open(link, '_blank');
+            });
+
+            itemContainer.appendChild(coverImage);
+            itemContainer.appendChild(titleContainer);
+
+            contentContainer.appendChild(itemContainer);
+        });
+
+        // Second fetch for apiEndpointCollection
+        fetch(apiEndpointCollection, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                // Grab the title from collectionData
+                const collectionTitle = data.item.title;
+
+                // Create an element to display the title
+                const collectionTitleContainer = document.createElement('h1');
+                collectionTitleContainer.textContent = collectionTitle;
+
+                // Insert the title before contentContainer or another container as needed
+                contentContainer.insertBefore(collectionTitleContainer, contentContainer.firstChild);
+
+
+                // You can also process other data from collectionData and create additional content here
+          console.log(collectionTitle)
+            })
+            .catch(collectionError => {
+                console.error("Error fetching apiEndpointCollection:", collectionError);
+            });
+    })
+    .catch(error => {
+        console.error("Error fetching apiEndpoint:", error);
+    });
+
+    </script>
+</body>
+</html>
