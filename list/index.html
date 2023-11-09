@@ -66,7 +66,7 @@
             color: #333;
         }
 
-        @media screen and (max-width: 768px) {
+        /*@media screen and (max-width: 768px) {
             .itemContainer {
                 flex-direction: column;
                 text-align: center;
@@ -74,7 +74,7 @@
 
             .coverImage {
                 max-width: 0%; /*was 100*/
-                margin-right: 0;
+                /*margin-right: 0;
             }
 
             .titleContainer {
@@ -82,22 +82,24 @@
                 margin: 5px;
             }
 
-            #container {
-                padding: 10px; /* Reduce padding for smaller screens */
-            }
-        }
+            #container /*{*/
+                /*padding: 10px; /* Reduce padding for smaller screens */
+            /*}
+        }*/
     </style>
 </head>
 <body>
     <div id="container">
         <div id="contentContainer">
-            <h1>Links</h1>  
+           
         </div>
     </div>
 
     <script>
         // Replace with your actual API endpoint and authorization header
-        const apiEndpoint = "https://api.raindrop.io/rest/v1/raindrops/39062556";
+      const collectionId = "39062556"
+        const apiEndpoint = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
+      const apiEndpointCollection = `https://api.raindrop.io/rest/v1/collection/${collectionId}`;
         const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
 
         const requestOptions = {
@@ -108,44 +110,68 @@
             redirect: 'follow'
         };
 
-        fetch(apiEndpoint, requestOptions)
+       // First fetch for apiEndpoint...
+fetch(apiEndpoint, requestOptions)
+    .then(response => response.json())
+    .then(data => {
+        const contentContainer = document.getElementById('contentContainer');
+
+        data.items.forEach(item => {
+            const title = item.title;
+            const link = item.link;
+            const cover = item.cover;
+
+            const itemContainer = document.createElement('div');
+            itemContainer.classList.add('itemContainer');
+
+            const coverImage = document.createElement('img');
+            coverImage.classList.add('coverImage');
+            coverImage.src = cover;
+
+            // Add a click event listener to open the link when the cover is clicked
+            coverImage.addEventListener('click', () => {
+                window.open(link, '_blank');
+            });
+
+            const titleContainer = document.createElement('p');
+            titleContainer.classList.add('titleContainer');
+            titleContainer.textContent = title;
+            titleContainer.addEventListener('click', () => {
+                window.open(link, '_blank');
+            });
+
+            itemContainer.appendChild(coverImage);
+            itemContainer.appendChild(titleContainer);
+
+            contentContainer.appendChild(itemContainer);
+        });
+
+        // Second fetch for apiEndpointCollection
+        fetch(apiEndpointCollection, requestOptions)
             .then(response => response.json())
             .then(data => {
-                const contentContainer = document.getElementById('contentContainer');
+                // Grab the title from collectionData
+                const collectionTitle = data.item.title;
 
-                data.items.forEach(item => {
-                    const title = item.title;
-                    const link = item.link;
-                    const cover = item.cover;
+                // Create an element to display the title
+                const collectionTitleContainer = document.createElement('h1');
+                collectionTitleContainer.textContent = collectionTitle;
 
-                    const itemContainer = document.createElement('div');
-                    itemContainer.classList.add('itemContainer');
+                // Insert the title before contentContainer or another container as needed
+                contentContainer.insertBefore(collectionTitleContainer, contentContainer.firstChild);
 
-                    const coverImage = document.createElement('img');
-                    coverImage.classList.add('coverImage');
-                    coverImage.src = cover;
 
-                    // Add a click event listener to open the link when the cover is clicked
-                    coverImage.addEventListener('click', () => {
-                        window.open(link, '_blank');
-                    });
-
-                    const titleContainer = document.createElement('p');
-                    titleContainer.classList.add('titleContainer');
-                    titleContainer.textContent = title;
-                    titleContainer.addEventListener('click', () => {
-                        window.open(link, '_blank');
-                    });
-
-                    itemContainer.appendChild(coverImage);
-                    itemContainer.appendChild(titleContainer);
-
-                    contentContainer.appendChild(itemContainer);
-                });
+                // You can also process other data from collectionData and create additional content here
+          console.log(collectionTitle)
             })
-            .catch(error => {
-                console.error("Error:", error);
+            .catch(collectionError => {
+                console.error("Error fetching apiEndpointCollection:", collectionError);
             });
+    })
+    .catch(error => {
+        console.error("Error fetching apiEndpoint:", error);
+    });
+
     </script>
 </body>
 </html>
