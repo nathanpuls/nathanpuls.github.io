@@ -108,7 +108,7 @@ html, body {
       // Get specific parameters
       var param = urlParams.get("collection");
       // Replace with your actual API endpoint and authorization header
-      const collectionId = param; // number 39062556
+      const collectionId = 39062556; // number 39062556
       const apiEndpoint = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
       const apiEndpointCollection = `https://api.raindrop.io/rest/v1/collection/${collectionId}`;
       const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
@@ -162,8 +162,10 @@ html, body {
                   .then(response => response.json())
                   .then(collectionData => {
                       // Grab the title from collectionData
-                      const collectionTitle = collectionData.title;
+                      const collectionTitle = collectionData.item.title;
                       document.title = collectionTitle;
+               
+               
 
                       // Create an element to display the title
                       const collectionTitleContainer = document.createElement('h1');
@@ -181,6 +183,7 @@ html, body {
           .catch(error => {
               console.error("Error fetching apiEndpoint:", error);
           });
+       
     </script>
 </body>
 </html>
