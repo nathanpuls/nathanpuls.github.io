@@ -160,6 +160,7 @@ fetch(apiEndpoint, requestOptions)
             .then(data => {
                 // Grab the title from collectionData
                 const collectionTitle = data.item.title;
+          document.title = collectionTitle;
 
                 // Create an element to display the title
                 const collectionTitleContainer = document.createElement('h1');
