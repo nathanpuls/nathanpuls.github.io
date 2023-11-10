@@ -7,7 +7,92 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <style>
-        /* Your CSS styles here */
+          body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align content to the top */
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            background-color: white;
+            padding: 20px;
+            max-width: 600px; /* Set a maximum width for better readability on smaller screens */
+            width: 100%;
+        }
+
+        #contentContainer {
+            text-align: left;
+        }
+
+        .itemContainer {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+            padding: 0px; /*was 10*/
+            border: 1px solid white;
+            border-radius: 5px;
+          border-color: #ccc;
+        }
+
+        .coverImage {
+            width: 40px; /*change to 100 to make visible*/
+            height: 40px;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer; /* Add a pointer cursor to indicate the cover image is clickable */
+        }
+
+        .titleContainer {
+            font-family: 'Poppins', sans-serif;
+            color: black;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 10px;
+          text-decoration: none; /* Remove the default underline */
+   /* border-bottom: 1px dotted #000; /* 1px dotted underline with black color */
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: black;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .titleContainer:hover {
+            color: #333;
+        }
+
+        /*@media screen and (max-width: 768px) {
+            .itemContainer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .coverImage {
+                max-width: 0%; /*was 100*/
+                /*margin-right: 0;
+            }
+
+            .titleContainer {
+                font-size: 18px;
+                margin: 5px;
+            }
+
+            #container /*{*/
+                /*padding: 10px; /* Reduce padding for smaller screens */
+            /*}
+        }*/
+      /* Add this CSS to your stylesheet or in a <style> tag within your HTML */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
     </style>
 </head>
 <body>
