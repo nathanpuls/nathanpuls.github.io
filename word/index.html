@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Message Page</title>
+    <!-- FontAwesome library -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+
+    <style>
+        /* Global styling for text using Poppins font */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0; /* Remove default margin */
+        }
+
+        /* Styling for the modal background overlay */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Styling for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Styling for the content inside the modal */
+        #copiedMessage {
+            color: green;
+            margin: 10px 0;
+        }
+
+        /* Styling for the message input */
+        #messageInput {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Styling for the buttons inside the modal */
+        .modal button {
+            margin: 10px;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Styling for the main page content */
+        #mainContent {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            padding-bottom: 20px; /* Bottom margin */
+        }
+
+        #mainContent h3 {
+            margin-bottom: 20px;
+        }
+
+        /* Styling for the Create a Message button */
+        #createMessageButton {
+    
+            position: fixed;
+    bottom: 50px;
+    left: 50%;
+    right: 50%;
+   border-color: white;
+   background-color: white;
+   border-style: none;
+   
+    
+    cursor: pointer;
+    font-size: 5em;
+}
+
+#createMessageButton .material-icons {
+    color: black; /* Set the color to black */
+}
+
+
+
+    </style>
+
+    <!-- Google Fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+</head>
+<body>
+
+    <!-- Main page content -->
+    <div id="mainContent">
+        <!-- H3 element with the message -->
+        <h3 id="messageDisplay"></h3>
+    </div>
+
+    <!-- Create a Message button -->
+    <button id="createMessageButton" onclick="openModal()">
+        <i class="material-icons">create</i>
+
+    </button>
+
+    <!-- Modal background overlay -->
+    <div id="overlay" onclick="closeModal()"></div>
+
+    <!-- Modal for input and button -->
+    <div id="myModal" class="modal">
+        <!-- Display for copied message -->
+        <p id="copiedMessage"></p>
+
+        <!-- Textarea for the message input -->
+        <textarea id="messageInput" placeholder="Type your message here"></textarea>
+
+        <!-- Button to copy the URL -->
+        <button onclick="copyURL()">Copy URL</button>
+
+        <!-- Button to close the modal -->
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <script>
+        // Function to open the modal
+        function openModal() {
+            var modal = document.getElementById('myModal');
+            var overlay = document.getElementById('overlay');
+
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+
+            // Set focus to the input field
+            document.getElementById('messageInput').focus();
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            var overlay = document.getElementById('overlay');
+
+            modal.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
+        // Function to encode special characters in a string for a URL
+        function encodeURLParams(str) {
+            return encodeURIComponent(str);
+        }
+
+        // Function to generate the URL with encoded parameters
+        function generateURL() {
+            // Get the message from the input box
+            var messageInput = document.getElementById('messageInput');
+            var message = messageInput.value;
+
+            // Encode the message for the URL
+            var encodedMessage = encodeURLParams(message);
+
+            // Create the URL with the encoded message parameter
+            return window.location.origin + window.location.pathname + '?message=' + encodedMessage;
+        }
+
+        // Function to copy the generated URL to the clipboard
+        function copyURL() {
+            var generatedURL = generateURL();
+
+            // Create a temporary textarea element to hold the URL
+            var tempTextarea = document.createElement('textarea');
+            tempTextarea.value = generatedURL;
+            document.body.appendChild(tempTextarea);
+
+            // Select and copy the URL from the textarea
+            tempTextarea.select();
+            document.execCommand('copy');
+
+            // Remove the temporary textarea
+            document.body.removeChild(tempTextarea);
+
+            // Display the "Copied!" message
+            var copiedMessage = document.getElementById('copiedMessage');
+            copiedMessage.textContent = 'Copied!';
+            
+            // Clear the message after 2 seconds
+            setTimeout(function() {
+                copiedMessage.textContent = '';
+                
+                // Close the modal after clearing the message
+                closeModal();
+            }, 2000);
+        }
+
+        // Function to display the message in the modal
+        function displayMessage() {
+            var messageParam = getParameterByName('message');
+            var messageDisplay = document.getElementById('messageDisplay');
+            messageDisplay.textContent = messageParam || 'No message provided';
+
+            // Set the page title to the message
+            document.title = messageParam || 'Dynamic Message Page';
+        }
+
+        // Function to get URL parameter by name
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Call the displayMessage function when the page loads
+        window.onload = displayMessage;
+    </script>
+</body>
+</html>
