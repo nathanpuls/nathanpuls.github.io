@@ -41,12 +41,10 @@
         fetch(apiEndpoint, requestOptions)
             .then(response => response.json())
             .then(data => {
-                // Sort items by date (assuming items have a 'created' timestamp)
-                data.items.sort((a, b) => new Date(b.created) - new Date(a.created));
-
-                // Find the most recent item and redirect
-                const mostRecentItem = data.items.find(item => nameParam === item.note);
-                if (mostRecentItem) {
+                // Filter items that match the provided parameter and sort by the timestamp (assuming items have a 'created' timestamp)
+                const filteredItems = data.items.filter(item => item.note === nameParam);
+                if (filteredItems.length > 0) {
+                    const mostRecentItem = filteredItems.reduce((prev, current) => (new Date(current.created) > new Date(prev.created) ? current : prev));
                     document.write(`<h1>Redirecting to ${mostRecentItem.title}...</h1>`);
                     setTimeout(function() {
                         window.location.href = mostRecentItem.link;
