@@ -45,7 +45,7 @@
         // Get the URL params
         var urlParams = new URLSearchParams(window.location.search);
         // Get specific parameters
-        var param = urlParams.get("collection");
+        var nameParam = urlParams.get("name");
         // Replace with your actual API endpoint and authorization header
         const collectionId = 39599913; // num
         const apiEndpoint = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
@@ -62,9 +62,9 @@
 
         const contentContainer = document.getElementById('container');
 
-        // Function to redirect based on URL parameter matching the note's link
-        function redirectIfParameterMatches(collectionParam, noteLink) {
-            if (collectionParam === noteLink) {
+        // Function to redirect based on URL parameter matching the note's name
+        function redirectIfNameMatches(nameParam, noteName, noteLink) {
+            if (nameParam === noteName) {
                 window.location.href = noteLink; // Redirect to the note's link
             }
         }
@@ -126,8 +126,8 @@
 
                     contentContainer.appendChild(itemContainer);
 
-                    // Check and redirect if the parameter matches the note's link
-                    redirectIfParameterMatches(param, link);
+                    // Check and redirect if the parameter matches the note's name
+                    redirectIfNameMatches(nameParam, note, link);
                 });
             })
             .catch(error => {
