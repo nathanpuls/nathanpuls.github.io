@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <title>Redirecting...</title>
+    <title>Redirect Page</title>
     <style>
         /* CSS styles */
         body {
@@ -16,7 +16,6 @@
     </style>
 </head>
 <body>
-    <h1>Redirecting...</h1>
 
     <script>
         // JavaScript code
@@ -44,9 +43,12 @@
                 data.items.forEach(item => {
                     const note = item.note; // Include notes field
 
-                    // Check and redirect if the parameter matches the note's name
+                    // Check and display the website title if the parameter matches the note's name
                     if (nameParam === note) {
-                        window.location.href = item.link; // Redirect to the note's link
+                        document.write(`<h1>Redirecting to ${item.title}...</h1>`);
+                        setTimeout(function() {
+                            window.location.href = item.link;
+                        }, 2000); // Redirect after 2 seconds (adjust this time as needed)
                     }
                 });
             })
