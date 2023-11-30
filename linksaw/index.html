@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>Links</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        /* CSS styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            background-color: white;
+            padding: 20px;
+            max-width: 800px; /* Increased max-width for better display */
+            width: 100%;
+        }
+
+        /* Other CSS styles... */
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="pageNameContainer">
+            <h1 class="pageName"></h1>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code
+        var currentURL = window.location.href;
+        // Get the URL params
+        var urlParams = new URLSearchParams(window.location.search);
+        // Get specific parameters
+        var param = urlParams.get("collection");
+        // Replace with your actual API endpoint and authorization header
+        const collectionId = 39599913; // num
+        const apiEndpoint = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
+        const apiEndpointCollection = `https://api.raindrop.io/rest/v1/collection/${collectionId}`;
+        const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
+
+        const requestOptions = {
+            method: 'GET',
+            headers: new Headers({
+                "Authorization": authToken,
+            }),
+            redirect: 'follow'
+        };
+
+        const contentContainer = document.getElementById('container');
+
+        // Function to check if the current URL matches the note's link and perform a redirect if matched
+        function redirectToNoteLink(noteLink) {
+            const currentPath = window.location.pathname; // Get the current URL path
+            if (currentPath === noteLink) {
+                window.location.href = noteLink; // Redirect to the note's link
+            }
+        }
+
+        fetch(apiEndpoint, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                data.items.forEach(item => {
+                    const title = item.title;
+                    const link = item.link;
+                    const cover = item.cover;
+                    const note = item.note; // Include notes field
+
+                    const itemContainer = document.createElement('div');
+                    itemContainer.classList.add('itemContainer');
+
+                    const coverImage = document.createElement('img');
+                    coverImage.classList.add('coverImage');
+                    coverImage.src = cover;
+
+                    // Add a click event listener to open the link when the cover is clicked
+                    coverImage.addEventListener('click', () => {
+                        window.open(link, '_blank');
+                    });
+
+                    const textContainer = document.createElement('div');
+                    textContainer.classList.add('textContainer');
+
+                    const titleContainer = document.createElement('p');
+                    titleContainer.classList.add('titleContainer');
+                    titleContainer.textContent = title;
+                    titleContainer.addEventListener('click', () => {
+                        window.open(link, '_blank');
+                    });
+
+                    // Extracting the website name from the link
+                    const websiteName = new URL(link).hostname.replace('www.', ''); // Extract website name and remove 'www.'
+
+                    const websiteNameContainer = document.createElement('span');
+                    websiteNameContainer.classList.add('websiteName'); // Add class for styling
+                    websiteNameContainer.textContent = websiteName;
+
+                    // Create a paragraph for displaying the notes
+                    const notesContainer = document.createElement('p');
+                    notesContainer.textContent = note;
+                    notesContainer.style.fontSize = '14px'; // Style the notes content as needed
+
+                    textContainer.appendChild(titleContainer);
+                    textContainer.appendChild(websiteNameContainer);
+                    textContainer.appendChild(notesContainer); // Append the notes content
+
+                    itemContainer.appendChild(coverImage);
+                    itemContainer.appendChild(textContainer);
+
+                    // Click event on itemContainer to open link when clicked anywhere inside it
+                    itemContainer.addEventListener('click', () => {
+                        window.open(link, '_blank');
+                    });
+
+                    contentContainer.appendChild(itemContainer);
+
+                    // Check and redirect if the current URL matches the note's link
+                    redirectToNoteLink(link);
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching apiEndpoint:", error);
+            });
+
+        // Fetch for apiEndpointCollection...
+        fetch(apiEndpointCollection, requestOptions)
+            .then(response => response.json())
+            .then(collectionData => {
+                // Grab the title from collectionData
+                const collectionTitle = collectionData.item.title;
+                const pageNameContainer = document.createElement('div');
+                pageNameContainer.classList.add('pageNameContainer');
+                const pageName = document.createElement('h1');
+                pageName.classList.add('pageName');
+                pageName.textContent = collectionTitle;
+                pageNameContainer.appendChild(pageName);
+                contentContainer.insertBefore(pageNameContainer, contentContainer.firstChild);
+            })
+            .catch(collectionError => {
+                console.error("Error fetching apiEndpointCollection:", collectionError);
+            });
+    </script>
+</body>
+</html>
