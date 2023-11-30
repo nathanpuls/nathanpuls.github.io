@@ -14,6 +14,7 @@
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
+        
             margin: 0;
         }
 
@@ -28,7 +29,7 @@
             display: flex;
             align-items: center;
             margin: 10px;
-            padding: 10px;
+            padding: 0px;
             border: 1px solid #ccc;
             border-radius: 5px;
             cursor: pointer;
@@ -54,6 +55,8 @@
             font-weight: 500;
             margin: 0;
             text-decoration: none;
+            white-space: nowrap; /* Prevent text wrapping */
+
         }
 
         .websiteName {
@@ -65,11 +68,13 @@
         .pageName {
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            margin:10px;
+          padding-left:0px;
         }
 
-        .titleContainer:hover {
-            color: #333;
+        .2itemContainer:hover {
+            background-color: #fafafa;
         }
 
         html, body {
