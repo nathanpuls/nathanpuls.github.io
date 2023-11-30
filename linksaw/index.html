@@ -62,10 +62,9 @@
 
         const contentContainer = document.getElementById('container');
 
-        // Function to check if the current URL matches the note's link and perform a redirect if matched
-        function redirectToNoteLink(noteLink) {
-            const currentPath = window.location.pathname; // Get the current URL path
-            if (currentPath === noteLink) {
+        // Function to redirect based on URL parameter matching the note's link
+        function redirectIfParameterMatches(collectionParam, noteLink) {
+            if (collectionParam === noteLink) {
                 window.location.href = noteLink; // Redirect to the note's link
             }
         }
@@ -127,8 +126,8 @@
 
                     contentContainer.appendChild(itemContainer);
 
-                    // Check and redirect if the current URL matches the note's link
-                    redirectToNoteLink(link);
+                    // Check and redirect if the parameter matches the note's link
+                    redirectIfParameterMatches(param, link);
                 });
             })
             .catch(error => {
