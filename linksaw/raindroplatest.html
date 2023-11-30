@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-  <h1>hi</h1>
+
     <script>
         // JavaScript code
         var currentURL = window.location.href;
@@ -41,10 +41,19 @@
         fetch(apiEndpoint, requestOptions)
             .then(response => response.json())
             .then(data => {
-                // Filter items that match the provided parameter and sort by the timestamp (assuming items have a 'created' timestamp)
+                // Display fetched data for debugging
+                console.log(data);
+
+                // Filter items that match the provided parameter
                 const filteredItems = data.items.filter(item => item.note === nameParam);
+
+                // Display filtered items for debugging
+                console.log(filteredItems);
+
                 if (filteredItems.length > 0) {
                     const mostRecentItem = filteredItems.reduce((prev, current) => (new Date(current.created) > new Date(prev.created) ? current : prev));
+                    console.log("Most recent item:", mostRecentItem);
+
                     document.write(`<h1>Redirecting to ${mostRecentItem.title}...</h1>`);
                     setTimeout(function() {
                         window.location.href = mostRecentItem.link;
