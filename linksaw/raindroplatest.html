@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>Redirect Page</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // JavaScript code
+        var currentURL = window.location.href;
+        // Get the URL params
+        var urlParams = new URLSearchParams(window.location.search);
+        // Get specific parameters
+        var nameParam = urlParams.get("name");
+        // Replace with your actual API endpoint and authorization header
+        const collectionId = 39599913; // num
+        const apiEndpoint = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
+        const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
+
+        const requestOptions = {
+            method: 'GET',
+            headers: new Headers({
+                "Authorization": authToken,
+            }),
+            redirect: 'follow'
+        };
+
+        fetch(apiEndpoint, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                // Sort items by date (assuming items have a 'created' timestamp)
+                data.items.sort((a, b) => new Date(b.created) - new Date(a.created));
+
+                // Find the most recent item and redirect
+                const mostRecentItem = data.items.find(item => nameParam === item.note);
+                if (mostRecentItem) {
+                    document.write(`<h1>Redirecting to ${mostRecentItem.title}...</h1>`);
+                    setTimeout(function() {
+                        window.location.href = mostRecentItem.link;
+                    }, 2000); // Redirect after 2 seconds (adjust this time as needed)
+                } else {
+                    console.error("No matching item found.");
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching apiEndpoint:", error);
+            });
+    </script>
+</body>
+</html>
