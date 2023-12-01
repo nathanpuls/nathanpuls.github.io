@@ -179,7 +179,9 @@
                 pageNameContainer.classList.add('pageNameContainer');
                 const pageName = document.createElement('h1');
                 pageName.classList.add('pageName');
+                document.title = collectionTitle;
                 pageName.textContent = collectionTitle;
+
                 pageNameContainer.appendChild(pageName);
                 contentContainer.insertBefore(pageNameContainer, contentContainer.firstChild);
             })
