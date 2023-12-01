@@ -20,13 +20,7 @@
 
     <script>
         // JavaScript code
-        var currentURL = window.location.href;
-        // Get the URL params
-        var urlParams = new URLSearchParams(window.location.search);
-        // Get specific parameters
-        var nameParam = urlParams.get("name");
-        // Replace with your actual API endpoint and authorization header
-        const collectionId = 39599913; // num
+        const collectionId = 39599913; // Replace with your actual collection ID
         const apiEndpoint = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
         const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
 
@@ -41,26 +35,14 @@
         fetch(apiEndpoint, requestOptions)
             .then(response => response.json())
             .then(data => {
-                // Display fetched data for debugging
-                console.log(data);
+                // Sort items by date (assuming items have a 'created' timestamp)
+                data.items.sort((a, b) => new Date(b.created) - new Date(a.created));
 
-                // Filter items that match the provided parameter
-                const filteredItems = data.items.filter(item => item.note === nameParam);
+                // Get the most recent item
+                const mostRecentItem = data.items[0]; // Assuming the first item is the most recent one
 
-                // Display filtered items for debugging
-                console.log(filteredItems);
-
-                if (filteredItems.length > 0) {
-                    const mostRecentItem = filteredItems.reduce((prev, current) => (new Date(current.created) > new Date(prev.created) ? current : prev));
-                    console.log("Most recent item:", mostRecentItem);
-
-                    document.write(`<h1>Redirecting to ${mostRecentItem.title}...</h1>`);
-                    setTimeout(function() {
-                        window.location.href = mostRecentItem.link;
-                    }, 2000); // Redirect after 2 seconds (adjust this time as needed)
-                } else {
-                    console.error("No matching item found.");
-                }
+                // Redirect to the most recent URL
+                window.location.href = mostRecentItem.link;
             })
             .catch(error => {
                 console.error("Error fetching apiEndpoint:", error);
