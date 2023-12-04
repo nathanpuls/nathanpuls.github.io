@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>leap.by</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            text-align: center;
+        }
+
+        #brand {
+            font-size: 36px;
+            
+            
+            color: rgb(34, 206, 126);
+            
+            
+        }
+
+        #name {
+            font-size: 36px;
+           
+            
+            color: rgb(0, 0, 0);
+           
+        }
+
+        /*.container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 5px;
+            background-color: #fff;
+            border-radius: 10px;
+            text-align: center;
+        }*/
+
+        #link2 {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #444;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        #link2:hover {
+            color: rgb(34, 206, 126);
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <span id="brand">leap.by/</span>
+  
+   <!-- <div class="container">-->
+        <span id="name"></span>
+       <br>
+       <span>🐸</span>
+        <a id="link2" class="link" href=""></a>
+    <!--</div>-->
+
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        var nameParam = urlParams.get('name');
+        var spreadsheetId = '1Q17pR2tNSyOiA4qvRAAXKO_BUNRx4kPdtO-B0V7o4FA';
+        var range = 'Sheet1!A:B';
+        var apiKey = 'AIzaSyBSR0QwHqOR7pebdeUl8LO7EA7_epUk7dk';
+        var url = 'https://sheets.googleapis.com/v4/spreadsheets/' + spreadsheetId + '/values/' + range + '?key=' + apiKey;
+
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                var response = JSON.parse(xmlHttp.responseText);
+                var data = response.values;
+
+                var linkValue = '';
+
+                var latestLink = {};
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i][0].toLowerCase() === nameParam.toLowerCase() && data[i][1]) {
+                        var timestamp = Date.parse(data[i][2]); // Assuming the timestamp is in the third column
+                        if (!latestLink.timestamp || timestamp > latestLink.timestamp) {
+                            latestLink.timestamp = timestamp;
+                            latestLink.value = data[i][1]; // Value in the cell immediately to the right (link)
+                        }
+                    }
+                }
+                linkValue = latestLink.value || '';
+
+                document.getElementById('name').innerHTML = nameParam || '';
+                document.getElementById('link2').innerHTML = linkValue;
+
+                if (linkValue) {
+                    if (!linkValue.startsWith('http://') && !linkValue.startsWith('https://')) {
+                        linkValue = 'http://' + linkValue;
+                    }
+                    window.location.href = linkValue99;
+                } else {
+                    console.log('Link not found');
+                }
+            } else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) {
+                console.log('Error fetching data');
+            }
+        };
+        xmlHttp.open('GET', url, true);
+        xmlHttp.send();
+    </script>
+</body>
+</html>
