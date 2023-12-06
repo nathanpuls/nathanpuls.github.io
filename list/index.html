@@ -1,12 +1,13 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <title>Links</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <style>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<title>Links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<style>
         /* CSS styles */
         body {
             font-family: 'Poppins', sans-serif;
@@ -46,6 +47,8 @@
         .textContainer {
             display: flex;
             flex-direction: column;
+          margin-top: 10px;
+          margin-bottom: 10px;
         }
 
         .titleContainer {
@@ -55,7 +58,7 @@
             font-weight: 500;
             margin: 0;
             text-decoration: none;
-            white-space: nowrap; /* Prevent text wrapping */
+            white-space: normal; /* Prevent text wrapping */
 
         }
 
@@ -84,13 +87,13 @@
     </style>
 </head>
 <body>
-    <div id="container">
-        <div class="pageNameContainer">
-            <h1 class="pageName"></h1>
-        </div>
-        <!-- Content will be dynamically added here -->
-    </div>
-    <script>
+<div id="container">
+<div class="pageNameContainer">
+<h1 class="pageName"></h1>
+</div>
+
+</div>
+<script>
         // JavaScript code
         var currentURL = window.location.href;
         // Get the URL params
@@ -98,7 +101,7 @@
         // Get specific parameters
         var param = urlParams.get("collection");
         // Replace with your actual API endpoint and authorization header
-        const collectionId = param; // num
+        const collectionId =param; // num
         const apiEndpoint = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
         const apiEndpointCollection = `https://api.raindrop.io/rest/v1/collection/${collectionId}`;
         const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
