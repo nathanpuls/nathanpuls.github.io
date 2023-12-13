@@ -1,0 +1,54 @@
+<script>
+
+  //URLs externally grabbed from json file
+  
+    let redirectionRules = {}; // Define redirectionRules object
+  
+    jsonUrl = 'https://raw.githubusercontent.com/nathanpuls/nathanpuls.github.io/398b5618528420bf067e36d270cd041a1d102379/shortcut/redirection-rules.json';
+    jsonUrl2 = '';
+    
+    async function fetchRulesFromJSONFile() {
+      try {
+        const response = await fetch(jsonUrl);
+        const data = await response.json();
+  
+        redirectionRules = data; // Assign fetched data to redirectionRules
+  
+        console.log('Updated redirectionRules:', redirectionRules);
+  
+        // Call redirection logic after fetching rules
+        redirectBasedOnParams();
+      } catch (error) {
+        console.error('Error fetching JSON:', error);
+      }
+    }
+  
+    // Call the function when the page loads
+    window.onload = function () {
+      fetchRulesFromJSONFile(); // Fetch rules when the page loads
+    };
+  
+    function redirectBasedOnParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const s = urlParams.get('s');
+      const a = urlParams.get('a');
+      const b = urlParams.get('b');
+      const c = urlParams.get('c');
+  
+      let redirectionUrl = redirectionRules[s];
+  
+      if (redirectionUrl) {
+        // Replace placeholders in the URL with actual values
+        redirectionUrl = redirectionUrl.replace('${a}', encodeURIComponent(a || ''));
+        redirectionUrl = redirectionUrl.replace('${b}', encodeURIComponent(b || ''));
+        redirectionUrl = redirectionUrl.replace('${c}', encodeURIComponent(c || ''));
+  
+        window.location.href = redirectionUrl;
+      } else {
+        console.error('Invalid or missing site parameter');
+        // Redirect to a default page or display an error message
+        // window.location.href = 'https://www.example.com';
+      }
+    }
+  </script>
+  
