@@ -37,7 +37,18 @@
     const baseUrl = redirectionRules[s];
 
     if (baseUrl) {
-      const redirectionUrl = baseUrl.includes('${a}') ? baseUrl.replace('${a}', a).replace('${b}', b).replace('${c}', c) : baseUrl;
+      let redirectionUrl = baseUrl;
+
+      if (a && redirectionUrl.includes('${a}')) {
+        redirectionUrl = redirectionUrl.replace('${a}', a);
+      }
+      if (b && redirectionUrl.includes('${b}')) {
+        redirectionUrl = redirectionUrl.replace('${b}', b);
+      }
+      if (c && redirectionUrl.includes('${c}')) {
+        redirectionUrl = redirectionUrl.replace('${c}', c);
+      }
+
       window.location.href = redirectionUrl;
     } else {
       console.error("Invalid or missing site parameter");
