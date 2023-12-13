@@ -1,0 +1,30 @@
+  <script>
+function redirectBasedOnParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const site = urlParams.get('site');
+    const text = urlParams.get('text');
+  
+    const redirectionRules = {
+      b: 'https://www.bible.com/bible/59/',
+      g: 'https://www.google.com/search?q=',
+      // Add more sites as needed
+      // c: '...',
+      // d: '...',
+    };
+  
+    const baseUrl = redirectionRules[site];
+  
+    if (baseUrl) {
+      const redirectionUrl = baseUrl + text;
+      window.location.href = redirectionUrl;
+    } else {
+      // Handle cases where 'site' parameter is not found or unrecognized
+      // Redirect to a default page or display an error message
+      console.error('Invalid or missing site parameter');
+      // Example: Redirect to a default page
+      //window.location.href = 'https://www.example.com';
+    }
+  }
+  
+  window.onload = redirectBasedOnParams;
+</script>
