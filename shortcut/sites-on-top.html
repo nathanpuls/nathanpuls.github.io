@@ -1,0 +1,61 @@
+<script>
+    // Define redirectionRules function at the top
+    function createRedirectionRules(a, b, c) {
+      return {
+        bible: `https://www.bible.com/bible/59/${a}`,
+        b: `https://www.bible.com/bible/59/${a}`,
+        google: `https://www.google.com/search?q=${a}`,
+        g: `https://www.google.com/search?q=${a}`,
+        youtube: `https://www.youtube.com/results?search_query=${a}`,
+        y: `https://www.youtube.com/results?search_query=${a}`,
+        define: `https://www.google.com/search?q=define+${a}`,
+        d: `https://www.google.com/search?q=define+${a}`,
+        maps: `https://www.google.com/maps/search/${a}`,
+        m: `https://www.google.com/maps/search/${a}`,
+        thesaurus: `https://www.thesaurus.com/browse/${a}`,
+        t: `https://www.thesaurus.com/browse/${a}`,
+        amazon: `https://www.amazon.com/s?k=${a}`,
+        a: `https://www.amazon.com/s?k=${a}`,
+        connectionsarchive: `https://connections.swellgarfo.com/nyt/${a}`,
+        ca: `https://connections.swellgarfo.com/nyt/${a}`,
+        godaddy: `https://www.godaddy.com/domainsearch/find?domainToCheck=${a}`,
+        gd: `https://www.godaddy.com/domainsearch/find?domainToCheck=${a}`,
+        github: `https://github.com/nathanpuls/nathanpuls.github.io/tree/gh-pages/${a}`,
+        gh: `https://github.com/nathanpuls/nathanpuls.github.io/tree/gh-pages/${a}`,
+        cloudflare: `https://dash.cloudflare.com/ed3b0af15e1c2b8a6a351cc929b0a312/${a}/rules`,
+        cf: `https://dash.cloudflare.com/ed3b0af15e1c2b8a6a351cc929b0a312/${a}/rules`,
+        np: `https://nathanpuls.com/${a}/${b}/${c}`,
+        np2: `https://nathanpuls.com/${c}/${b}/${a}`,
+        // Add more rules if necessary
+      };
+    }
+  
+    // Function to handle redirection
+    function redirectBasedOnParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const s = urlParams.get("s");
+      let a = urlParams.get("a");
+      let b = urlParams.get("b");
+      let c = urlParams.get("c");
+  
+      // Logic to handle missing 'b' and 'c'
+      b = b || '';
+      c = c || '';
+  
+      // Use the created rules object
+      const redirectionRules = createRedirectionRules(a, b, c);
+  
+      const redirectionUrl = redirectionRules[s];
+  
+      if (redirectionUrl) {
+        window.location.href = redirectionUrl;
+      } else {
+        console.error("Invalid or missing site parameter");
+        // Redirect to a default page or display an error message
+        // window.location.href = 'https://www.example.com';
+      }
+    }
+  
+    window.onload = redirectBasedOnParams;
+  </script>
+  
