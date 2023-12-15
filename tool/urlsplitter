@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>URL Splitter</title>
+  <style>
+    /* Basic styling for the copy buttons */
+    .copy-button {
+      margin-left: 10px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+    }
+    
+    input {
+    margin-bottom: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <h2>URL Splitter</h2>
+  <input type="text" id="urlInput" value="" placeholder="Enter URL..." style="width: 80%; padding: 5px;">
+  <br><br>
+
+  <div id="urlParts">
+    <!-- The URL parts will be displayed here -->
+  </div>
+  
+  <br>
+  
+  <button onclick="copyRecompiledURL()" class="copy-button">Copy Recompiled URL</button>
+  <br><br>
+  <input type="text" id="recompiledURL" placeholder="Recompiled URL" style="width: 80%; padding: 5px;">
+  
+  <script>
+    let parts = {};
+
+    function splitURL(url) {
+      let urlParts = document.createElement('div');
+
+      let parser = document.createElement('a');
+      parser.href = url;
+
+      parts.Scheme = parser.protocol.slice(0, -1);
+      parts.Domain = parser.hostname;
+      parts.Path = parser.pathname.split('/').filter(part => part !== '');
+      parts.Query = {};
+      let queryParts = parser.search.substring(1).split('&').filter(part => part !== '');
+      queryParts.forEach(part => {
+        let keyValue = part.split('=');
+        parts.Query[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
+      });
+
+      for (let key in parts) {
+        if (key === 'Scheme') {
+          let partDiv = document.createElement('div');
+          let label = document.createElement('span');
+          label.textContent = 'Scheme ';
+          partDiv.appendChild(label);
+
+          let part = document.createElement('input');
+          part.value = parts[key];
+          part.style.width = '30%';
+          part.setAttribute('data-type', key); // Store type for scheme
+          partDiv.appendChild(part);
+
+          let copyButton = document.createElement('button');
+          copyButton.textContent = 'Copy ' + label.textContent;
+          copyButton.className = 'copy-button';
+          copyButton.addEventListener('click', function() {
+            copyToClipboard(parts[key]);
+          });
+          partDiv.appendChild(copyButton);
+
+          part.addEventListener('input', function() {
+            let type = this.getAttribute('data-type');
+            parts[type] = this.value; // Update original URL scheme component
+            recompileURL(); // Update recompiled URL
+          });
+
+          urlParts.appendChild(partDiv);
+        } else if (key === 'Path') {
+          parts[key].forEach((pathPart, index) => {
+            let partDiv = document.createElement('div');
+            let label = document.createElement('span');
+            label.textContent = 'Path Part ';
+            partDiv.appendChild(label);
+
+            let part = document.createElement('input');
+            part.value = pathPart;
+            part.style.width = '30%';
+            part.setAttribute('data-index', index); // Store index for path parts
+            partDiv.appendChild(part);
+
+            let copyButton = document.createElement('button');
+          copyButton.textContent = 'Copy ' + label.textContent;
+            copyButton.className = 'copy-button';
+            copyButton.addEventListener('click', function() {
+              copyToClipboard(parts.Path[index]);
+            });
+            partDiv.appendChild(copyButton);
+
+            part.addEventListener('input', function() {
+              parts.Path[index] = this.value; // Update original URL path component
+              recompileURL(); // Update recompiled URL
+            });
+
+            urlParts.appendChild(partDiv);
+          });
+        } else if (key === 'Query') {
+          for (let queryKey in parts[key]) {
+            let partDiv = document.createElement('div');
+            let label = document.createElement('span');
+            label.textContent = 'Query ' + queryKey + ' ';
+            partDiv.appendChild(label);
+
+            let part = document.createElement('input');
+            part.value = parts[key][queryKey];
+            part.style.width = '30%';
+            part.setAttribute('data-key', queryKey); // Store key for query parts
+            partDiv.appendChild(part);
+
+            let copyButton = document.createElement('button');
+          copyButton.textContent = 'Copy ' + label.textContent;
+            copyButton.className = 'copy-button';
+            copyButton.addEventListener('click', function() {
+              copyToClipboard(parts.Query[queryKey]);
+            });
+            partDiv.appendChild(copyButton);
+
+            part.addEventListener('input', function() {
+              let queryParamKey = this.getAttribute('data-key');
+              parts.Query[queryParamKey] = this.value; // Update original URL query component
+              recompileURL(); // Update recompiled URL
+            });
+
+            urlParts.appendChild(partDiv);
+          }
+        }
+      }
+
+      document.getElementById('urlParts').innerHTML = '';
+      document.getElementById('urlParts').appendChild(urlParts);
+    }
+
+    function recompileURL() {
+      let recompiledURL = parts.Scheme + '://' + parts.Domain + '/';
+
+      parts.Path.forEach((pathPart, index) => {
+        if (index !== parts.Path.length - 1) {
+          recompiledURL += pathPart + '/';
+        } else {
+          recompiledURL += pathPart;
+        }
+      });
+
+      let queryParams = [];
+      for (let queryKey in parts.Query) {
+        queryParams.push(encodeURIComponent(queryKey) + '=' + encodeURIComponent(parts.Query[queryKey]));
+      }
+      if (queryParams.length > 0) {
+        recompiledURL += '?' + queryParams.join('&');
+      }
+
+      document.getElementById('recompiledURL').value = recompiledURL;
+    }
+
+    const urlInput = document.getElementById('urlInput');
+    urlInput.addEventListener('input', function() {
+      splitURL(this.value);
+    });
+
+    function copyRecompiledURL() {
+      let recompiledURLField = document.getElementById('recompiledURL');
+      recompiledURLField.select();
+      document.execCommand('copy');
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          //alert('Copied to clipboard!');
+        })
+        .catch(err => {
+          console.error('Unable to copy to clipboard:', err);
+        });
+    }
+    
+    // Split URL when page loads
+    window.onload = function() {
+      splitURL(urlInput.value);
+    };
+  </script>
+</body>
+</html>
