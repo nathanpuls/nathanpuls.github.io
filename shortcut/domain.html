@@ -7,11 +7,13 @@
       const domainCode = params.get('domain');
 
       const domainMappings = {
-        'rs': '271' // Add more mappings as needed
+        'rs': '271',
+        'is': '128',
+        'ms': '169',
       };
 
       const redirectUrlBase = 'https://member.expireddomains.net/domains/pendingdelete/?ftlds%5B%5D=';
-      const defaultRedirectUrl = 'https://example.com'; // Change this to your default redirect URL
+      const defaultRedirectUrl = 'https://nathanpuls.com/404'; // Change this to your default redirect URL
 
       if (domainCode && domainMappings[domainCode]) {
         const finalRedirectUrl = `${redirectUrlBase}${domainMappings[domainCode]}&fmaxhost=2&fonlycharhost=1&o=whois&r=d&activetab=expireddomains`;
