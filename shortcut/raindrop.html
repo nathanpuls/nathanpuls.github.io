@@ -1,1 +1,24 @@
+// Get the URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const collectionName = urlParams.get('collection');
+
+// Your collection name to number key-value pairs
+const collectionMappings = {
+  "ut": "39949975",
+  
+  // Add more mappings as needed
+};
+
+// Check if the collection name exists in the mappings
+if (collectionMappings.hasOwnProperty(collectionName)) {
+  const collectionNumber = collectionMappings[collectionName];
+  const redirectURL = `https://nathanpuls.com/list?collection=${collectionNumber}`;
+
+  // Redirect to the new URL
+  window.location.href = redirectURL;
+} else {
+  // Handle cases where the collection name doesn't exist
+  console.error('Collection name not found in mappings');
+  // Redirect to a default page or handle the error as needed
+}
 
