@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Extractor</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 16px;
+        }
+
+        #inputString {
+            width: 300px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+  <br>
+  <br>
+    <input type="text" id="inputString" style="width: 300px; font-size: 16px;" placeholder="Enter string with numbers">
+    <button onclick="extractAndCopy()" id="submitButton">Extract Numbers</button>
+    <br>
+  <br>
+    <div id="clipboardMessage"></div>
+
+    <script>
+        document.getElementById('inputString').addEventListener('input', function() {
+            document.getElementById('submitButton').click();
+        });
+
+        function extractAndCopy() {
+            let inputString = document.getElementById('inputString').value;
+            let numbers = inputString.match(/\d+(\.\d+)?/g).map(Number);
+            let output = numbers.join(', ');
+
+            // Copying to clipboard
+            navigator.clipboard.writeText(output)
+                .then(() => {
+                    document.getElementById('clipboardMessage').innerText = 'Copied to clipboard: ' + output;
+                })
+                .catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+        }
+    </script>
+</body>
+</html>
