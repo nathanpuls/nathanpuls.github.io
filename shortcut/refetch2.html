@@ -1,0 +1,47 @@
+<div id="dataDisplay"></div>
+
+<script>
+  function redirectBasedOnParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const s = urlParams.get("s");
+    let a = urlParams.get("a");
+    let b = urlParams.get("b");
+    let c = urlParams.get("c");
+
+    // Logic to handle missing 'b' and 'c'
+    b = b || '';
+    c = c || '';
+
+    // Fetch Google Sheet data to populate redirection rules
+    var API_KEY = 'YOUR_API_KEY';
+    var spreadsheetId = 'YOUR_SHEET_ID';
+    var range = 'Sheet1!A:B';
+
+    var url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${API_KEY}`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const redirectionRules = {};
+
+        if (data.values && data.values.length > 0) {
+          data.values.forEach(row => {
+            redirectionRules[row[0]] = row[1]; // Assuming column A contains keys and column B contains URLs
+          });
+        }
+
+        const redirectionUrl = redirectionRules[s];
+
+        if (redirectionUrl) {
+          window.location.href = redirectionUrl;
+        } else {
+          console.error("Invalid or missing site parameter");
+          // Redirect to a default page or display an error message
+          // window.location.href = 'https://www.example.com';
+        }
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }
+
+  window.onload = redirectBasedOnParams;
+</script>
