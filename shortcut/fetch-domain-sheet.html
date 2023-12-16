@@ -1,0 +1,49 @@
+// Client ID and API key from the Developer Console
+var CLIENT_ID = 'YOUR_CLIENT_ID';
+var API_KEY = 'YOUR_API_KEY';
+
+// Array of API discovery doc URLs for APIs used by the application
+var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+
+// Authorization scopes required by the API; see https://developers.google.com/sheets/api/guides/authorizing
+var SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+
+function handleClientLoad() {
+  gapi.load('client:auth2', initClient);
+}
+
+function initClient() {
+  gapi.client.init({
+    apiKey: API_KEY,
+    clientId: CLIENT_ID,
+    discoveryDocs: DISCOVERY_DOCS,
+    scope: SCOPES
+  }).then(function() {
+    // Fetch sheet info
+    fetchSheetInfo();
+  }, function(error) {
+    console.error('Error initializing the API client: ', error);
+  });
+}
+
+function fetchSheetInfo() {
+  gapi.client.sheets.spreadsheets.get({
+    spreadsheetId: '1A0Jg-T_gY777FDZfB08exyKBXzri5NqQJLz72zspu3k'
+  }).then(function(response) {
+    var spreadsheet = response.result;
+    var sheets = spreadsheet.sheets;
+
+    if (sheets && sheets.length > 0) {
+      for (var i = 0; i < sheets.length; i++) {
+        var sheet = sheets[i];
+        console.log('Sheet title: ' + sheet.properties.title);
+        console.log('Sheet ID: ' + sheet.properties.sheetId);
+        // Other properties available: sheet.properties.gridProperties, sheet.properties.index, etc.
+      }
+    } else {
+      console.log('No sheets found.');
+    }
+  }, function(error) {
+    console.error('Error fetching sheet info: ', error);
+  });
+}
