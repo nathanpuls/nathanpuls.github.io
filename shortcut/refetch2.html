@@ -31,9 +31,11 @@
         }
 
         const redirectionUrl = redirectionRules[s];
-
-        if (redirectionUrl) {
-          window.location.href = redirectionUrl;
+      
+      if (redirectionUrl) {
+  const replacedUrl = redirectionUrl.replace('${a}', a);
+  window.location.href = replacedUrl;
+          console.log(replacedUrl);
         } else {
           console.error("Invalid or missing site parameter");
           // Redirect to a default page or display an error message
