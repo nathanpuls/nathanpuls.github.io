@@ -1,24 +1,30 @@
+<div id="dataDisplay"></div>
+
 <script>
   // API key obtained from Google Developer Console
-var API_KEY = 'AIzaSyDtBiP0s5TwGX9_G9iMHyke4b1k86JT8i4';
+  var API_KEY = 'AIzaSyDtBiP0s5TwGX9_G9iMHyke4b1k86JT8i4';
 
-// Google Sheets URL
-var spreadsheetId = '1A5oU3WMTWRg8tS2VtJeSmTr7E0tmhfRgUszl9HudCs0';
-var range = 'Sheet1!A:B'; // Replace with your sheet name and range
+  // Google Sheets URL
+  var spreadsheetId = '1A0Jg-T_gY777FDZfB08exyKBXzri5NqQJLz72zspu3k';
+  var range = 'Sheet1!A:B'; // Replace with your sheet name and range
 
-var url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${API_KEY}`;
+  var url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${API_KEY}`;
 
-// Fetch data from Google Sheet
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    console.log('Sheet Data:', data.values); // Column A and B values
-    // Use the retrieved data as needed in your website
-    // For example:
-    // data.values.forEach(row => {
-    //   console.log(`Column A: ${row[0]}, Column B: ${row[1]}`);
-    //   // Use the row data here
-    // });
-  })
-  .catch(error => console.error('Error fetching data:', error));
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      var displayDiv = document.getElementById('dataDisplay');
+      var htmlContent = '';
+
+      if (data.values && data.values.length > 0) {
+        data.values.forEach(row => {
+          htmlContent += `<p>Column A: ${row[0]}, Column B: ${row[1]}</p>`;
+        });
+      } else {
+        htmlContent = '<p>No data found.</p>';
+      }
+
+      displayDiv.innerHTML = htmlContent;
+    })
+    .catch(error => console.error('Error fetching data:', error));
 </script>
