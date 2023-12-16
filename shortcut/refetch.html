@@ -1,6 +1,41 @@
 <div id="dataDisplay"></div>
 
 <script>
+
+//URLs embedded in this file 
+    
+    function redirectBasedOnParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const s = urlParams.get("s");
+      let a = urlParams.get("a");
+      let b = urlParams.get("b");
+      let c = urlParams.get("c");
+  
+      // Logic to handle missing 'b' and 'c'
+      b = b || '';
+      c = c || '';
+  
+      const redirectionRules = {
+        
+        // Add more rules if necessary
+      };
+  
+      const redirectionUrl = redirectionRules[s];
+  
+      if (redirectionUrl) {
+        window.location.href = redirectionUrl;
+      } else {
+        console.error("Invalid or missing site parameter");
+        // Redirect to a default page or display an error message
+        // window.location.href = 'https://www.example.com';
+      }
+    }
+  
+    window.onload = redirectBasedOnParams;
+  
+  
+
+  
   // API key obtained from Google Developer Console
   var API_KEY = 'AIzaSyDtBiP0s5TwGX9_G9iMHyke4b1k86JT8i4';
 
