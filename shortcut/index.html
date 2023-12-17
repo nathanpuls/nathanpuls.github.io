@@ -34,15 +34,16 @@
         const redirectionUrl = redirectionRules[s];
       
       if (redirectionUrl) {
-  const replacedUrl = redirectionUrl.replace('${a}', a);
+  const replacedUrl = redirectionUrl.replace('$', a);
   
   // Check if the URL has a protocol, if not, add 'http://'
-  if (!/^https?:\/\//i.test(correctedUrl)) {
-    correctedUrl = `http://${correctedUrl}`;
+  if (!/^https?:\/\//i.test(replacedUrl)) {
+    correctedUrl = `http://${replacedUrl}`;
   }
+  console.log(correctedUrl)
         
-  window.location.href = replacedUrl;
-          console.log(replacedUrl);
+  window.location.href = correctedUrl;
+
         } else {
           console.error("Invalid or missing site parameter");
           // Redirect to a default page or display an error message
