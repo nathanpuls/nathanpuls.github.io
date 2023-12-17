@@ -34,7 +34,8 @@
         const redirectionUrl = redirectionRules[s];
       
       if (redirectionUrl) {
-  const replacedUrl = redirectionUrl.replace('$', a);
+  const replacedUrl = redirectionUrl.replace(/\$/, a);
+
   
   let correctedUrl = replacedUrl;
 
