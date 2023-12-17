@@ -1,0 +1,71 @@
+<div id="dataDisplay"></div>
+
+<script>
+  
+  function redirectBasedOnParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const s = urlParams.get("s");
+    let a = urlParams.get("a");
+    let b = urlParams.get("b");
+    let c = urlParams.get("c");
+
+    // Logic to handle missing 'b' and 'c'
+    b = b || '';
+    c = c || '';
+
+    // Fetch Google Sheet data to populate redirection rules
+    var API_KEY = 'AIzaSyDtBiP0s5TwGX9_G9iMHyke4b1k86JT8i4';
+    var spreadsheetId = '1A5oU3WMTWRg8tS2VtJeSmTr7E0tmhfRgUszl9HudCs0';
+    var range = 'Sheet1!A:B';
+
+    var url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${API_KEY}`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const redirectionRules = {};
+
+        if (data.values && data.values.length > 0) {
+          data.values.forEach(row => {
+            redirectionRules[row[0]] = row[1]; // Assuming column A contains keys and column B contains URLs
+          });
+        }
+
+        const redirectionUrl = redirectionRules[s];
+      
+      if (redirectionUrl) {
+  const replacedUrl = redirectionUrl.replace('$', a);
+  
+  let correctedUrl = replacedUrl;
+
+//httpCodeStart
+
+function checkURL(url) {
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'http://' + url;
+    }
+    return url;
+}
+
+// input:
+let inputURL = correctedUrl;
+let checkedURL = checkURL(inputURL);
+console.log(checkedURL); // This will output: http://example.com
+
+//httpCodeEnd        
+        
+  console.log(checkedUrl)
+        
+  window.location.href = checkedUrl;
+
+        } else {
+          console.error("Invalid or missing site parameter");
+          // Redirect to a default page or display an error message
+          // window.location.href = 'https://www.example.com';
+        }
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }
+
+  window.onload = redirectBasedOnParams;
+</script>
