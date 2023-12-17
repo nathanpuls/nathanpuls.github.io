@@ -36,13 +36,11 @@
       if (redirectionUrl) {
   const replacedUrl = redirectionUrl.replace('$', a);
   
-  // Check if the URL has a protocol, if not, add 'http://'
-  if (!/^https?:\/\//i.test(replacedUrl)) {
-    correctedUrl = `http://${replacedUrl}`;
-  }
+  let correctedUrl = replacedUrl;
+        
   console.log(correctedUrl)
         
-  window.location.href = correctedUrl;
+  //window.location.href = correctedUrl;
 
         } else {
           console.error("Invalid or missing site parameter");
