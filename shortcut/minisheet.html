@@ -1,0 +1,130 @@
+<div id="displayDiv"></div>
+
+
+<script>
+  function redirectBasedOnSlug() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let slug = urlParams.get("slug");
+    
+    slug = 'np'; // Test - comment out for live
+    slug = slug.toLowerCase();
+ var API_KEY = 'AIzaSyDtBiP0s5TwGX9_G9iMHyke4b1k86JT8i4';
+    var firstSpreadsheetId = '1AkOUgMYBIbg7ZhXciPIdz0mlDqc6lZzHb10oNp5rc8I';
+    var firstRange = 'Sheet1!A:B';
+    var firstSheetLink = `https://sheets.googleapis.com/v4/spreadsheets/${firstSpreadsheetId}/values/${firstRange}?key=${API_KEY}`;
+
+    fetch(firstSheetLink)
+      .then(response => response.json())
+      .then(data => {
+        const redirectionRules = {};
+
+        if (data.values && data.values.length > 0) {
+          data.values.forEach(row => {
+            const key = row[0];
+            const value = row[1];
+
+            redirectionRules[key] = value;
+          });
+        }
+ 
+        let redirectLink = redirectionRules[slug];
+
+        if (redirectLink) {
+          console.log('First Redirect Link: ' + redirectLink);
+
+          // Use redirectLink as the API key for the second spreadsheet
+          var secondSpreadsheetId = redirectLink; // Assuming redirectLink contains the second spreadsheet ID
+          var secondRange = 'Sheet1!A:B';
+          var secondSheetLink = `https://sheets.googleapis.com/v4/spreadsheets/${secondSpreadsheetId}/values/${secondRange}?key=${API_KEY}`;
+
+                  fetch(secondSheetLink)
+            .then(response => response.json())
+            .then(secondData => {
+              // Process data from the second spreadsheet
+              console.log('Data from Second Spreadsheet:', secondData);
+
+              // Organize data into key-value pairs
+              const secondDataKeyValue = {};
+
+              if (secondData.values && secondData.values.length > 0) {
+                secondData.values.forEach(row => {
+                  const key = row[0];
+                  const value = row[1];
+
+                  secondDataKeyValue[key] = value;
+                });
+              }
+
+              // Use secondDataKeyValue for further processing or referencing
+             // console.log('Display:', secondDataKeyValue.colorName);
+ var displayDiv = document.getElementById('displayDiv');
+
+if (displayDiv) {
+  var table = document.createElement('table');
+  table.style.borderCollapse = 'collapse'; // Ensure cells have consistent borders
+  table.style.width = '100%'; // Set table width to 100% of container
+  table.style.fontSize = '16px'; // Larger font size for better readability
+
+  var tableBody = document.createElement('tbody');
+
+  // Creating a row for the title (slug value)
+  var titleRow = document.createElement('tr');
+  var titleCell = document.createElement('td');
+  titleCell.textContent = slug; // Display the title (slug value)
+  titleCell.style.textAlign = 'center';
+  titleCell.style.fontWeight = 'bold';
+  titleCell.style.fontSize = '20px'; // Larger font size for title
+  titleCell.colSpan = 2; // Span the cell across 2 columns
+  titleRow.appendChild(titleCell);
+
+  tableBody.appendChild(titleRow);
+
+  // Iterating through key-value pairs and populating the table
+  for (const key in secondDataKeyValue) {
+    if (secondDataKeyValue.hasOwnProperty(key)) {
+      var row = document.createElement('tr');
+
+      var cellKey = document.createElement('td');
+      var cellValue = document.createElement('td');
+
+      cellKey.textContent = key;
+      cellValue.textContent = secondDataKeyValue[key];
+
+      cellKey.style.border = '1px solid #ddd'; // Border style for cells
+      cellValue.style.border = '1px solid #ddd';
+
+      cellKey.style.padding = '8px'; // Padding inside cells
+      cellValue.style.padding = '8px';
+
+      cellKey.style.textAlign = 'center'; // Center content horizontally
+      cellValue.style.textAlign = 'center';
+
+      row.appendChild(cellKey);
+      row.appendChild(cellValue);
+
+      tableBody.appendChild(row);
+    }
+  }
+
+  table.appendChild(tableBody);
+  displayDiv.appendChild(table);
+} else {
+  console.log('The div with ID "displayDiv" was not found.');
+}
+
+
+
+            })
+            .catch(error => console.error('Error fetching data from second spreadsheet:', error));
+        } else {
+          console.error("Invalid or missing site parameter for the first spreadsheet");
+        }
+      })
+      .catch(error => console.error('Error fetching data from first spreadsheet:', error));
+  }
+
+  window.onload = redirectBasedOnSlug;
+  
+  
+</script> 
+ 
