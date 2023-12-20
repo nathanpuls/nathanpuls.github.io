@@ -1,4 +1,42 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minisheets</title>
+
+  <style>
+
+/* CSS for the responsive table and title styles */
+.responsive-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 16px;
+  max-width: none;
+  word-wrap: break-word;
+  overflow-x: hidden; /* Hide any content that exceeds the screen width */
+  table-layout: fixed; /* Set a fixed layout to make the table responsive */
+}
+
+.responsive-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  
+  text-align: center;
+}
+
+.title-cell {
+  text-align: left;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+
+  </style>
+</head>
+
+<body>
 
 <div id="displayDiv"></div>
 
@@ -57,26 +95,20 @@
                 });
               }
 
-              // Use secondDataKeyValue for further processing or referencing
-             // console.log('Display:', secondDataKeyValue.colorName);
+              
  var displayDiv = document.getElementById('displayDiv');
 
 if (displayDiv) {
   var table = document.createElement('table');
-  table.style.borderCollapse = 'collapse'; // Ensure cells have consistent borders
-  table.style.width = '100%'; // Set table width to 100% of container
-  table.style.fontSize = '16px'; // Larger font size for better readability
-  table.style.maxWidth = 'none'; // Set maximum width to prevent excessive stretching on larger screens
-  table.style.wordWrap = 'break-word'; // Allow content to wrap within
+  table.className='responsive-table';
+  
   var tableBody = document.createElement('tbody');
 
   // Creating a row for the title (slug value)
   var titleRow = document.createElement('tr');
   var titleCell = document.createElement('td');
   titleCell.textContent = slug; // Display the title (slug value)
-  titleCell.style.textAlign = 'center';
-  titleCell.style.fontWeight = 'bold';
-  titleCell.style.fontSize = '20px'; // Larger font size for title
+  titleCell.className='title-cell';
   titleCell.colSpan = 2; // Span the cell across 2 columns
   titleRow.appendChild(titleCell);
 
@@ -150,3 +182,5 @@ if (displayDiv) {
   
 </script> 
  
+</body>
+</html>
