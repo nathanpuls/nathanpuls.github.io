@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <div id="displayDiv"></div>
 
 
@@ -6,7 +8,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     let slug = urlParams.get("slug");
     
-    //slug = 'np'; // Test - comment out for live
+    slug = 'avila'; // Test - comment out for live
     slug = slug.toLowerCase();
  var API_KEY = 'AIzaSyDtBiP0s5TwGX9_G9iMHyke4b1k86JT8i4';
     var firstSpreadsheetId = '1AkOUgMYBIbg7ZhXciPIdz0mlDqc6lZzHb10oNp5rc8I';
@@ -79,6 +81,9 @@ if (displayDiv) {
 
   tableBody.appendChild(titleRow);
 
+  // Regular expression for matching URLs
+  var urlRegex = /(https?:\/\/[^\s]+)/g;
+
   // Iterating through key-value pairs and populating the table
   for (const key in secondDataKeyValue) {
     if (secondDataKeyValue.hasOwnProperty(key)) {
@@ -88,7 +93,20 @@ if (displayDiv) {
       var cellValue = document.createElement('td');
 
       cellKey.textContent = key;
-      cellValue.textContent = secondDataKeyValue[key];
+
+      var value = secondDataKeyValue[key];
+      var matches = value.match(urlRegex);
+      if (matches) {
+        var link = document.createElement('a');
+        link.href = matches[0]; // Assuming the first match is the link
+        link.textContent = value;
+        link.target = '_blank';
+        link.style.color = 'blue'; // Change link color if needed
+
+        cellValue.appendChild(link);
+      } else {
+        cellValue.textContent = value;
+      }
 
       cellKey.style.border = '1px solid #ddd'; // Border style for cells
       cellValue.style.border = '1px solid #ddd';
@@ -111,6 +129,9 @@ if (displayDiv) {
 } else {
   console.log('The div with ID "displayDiv" was not found.');
 }
+ 
+
+
 
 
 
