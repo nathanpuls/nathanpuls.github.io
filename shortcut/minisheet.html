@@ -66,7 +66,8 @@ if (displayDiv) {
   table.style.borderCollapse = 'collapse'; // Ensure cells have consistent borders
   table.style.width = '100%'; // Set table width to 100% of container
   table.style.fontSize = '16px'; // Larger font size for better readability
-
+  table.style.maxWidth = 'none'; // Set maximum width to prevent excessive stretching on larger screens
+  table.style.wordWrap = 'break-word'; // Allow content to wrap within
   var tableBody = document.createElement('tbody');
 
   // Creating a row for the title (slug value)
