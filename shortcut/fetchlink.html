@@ -54,8 +54,8 @@ a.link:hover {
     let slug = urlParams.get("slug");
     //slug = 'avila'; // comment out for live version
     //slug = 'np'; // comment out for live version
-        //slug = 'linktree'; // comment out for live version
-    document.title='slug';   
+        //slug = 'amazon'; // comment out for live version
+    document.title=slug;   
     
   
     
@@ -124,12 +124,16 @@ a.link:hover {
                 for (const key in secondDataKeyValue) {
                   if (secondDataKeyValue.hasOwnProperty(key)) {
                     var keyLink = document.createElement('a');
+                  
                     keyLink.textContent = key;
-                    keyLink.href = secondDataKeyValue[key];
+                    keyLink.href = checkHttp(secondDataKeyValue[key]);
                     keyLink.target = '_blank';
                     //keyLink.style.color = 'blue'; // Change link color if needed
                     //keyLink.style.display = 'block'; // Display each link on a new line
                     keyLink.classList.add('link');
+                    //console.log(':' + keyLink);
+                       
+                    //
                     displayDiv.appendChild(keyLink);
                   }
                 }
@@ -146,6 +150,18 @@ a.link:hover {
   }
 
   window.onload = redirectBasedOnSlug;
+  
+  //
+  function checkHttp(rowLink) {
+    if (!rowLink.startsWith('http://') && !rowLink.startsWith('https://')) {
+        rowLink = 'http://' + rowLink;
+    }
+    return rowLink;
+}
+
+keyLink = checkHttp(keyLink);
+console.log(keyLink);
+  //
 </script>
 
 </body>
