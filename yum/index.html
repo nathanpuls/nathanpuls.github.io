@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yum Recipes</title>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+  />
+  <link rel="stylesheet" href="css.css" />
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #fff9c4; /* Light yellow background */
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    h3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 400;
+      margin: 20px 0;
+    }
+
+    img {
+      margin-right: 10px;
+      margin-left: 5px;
+    }
+
+    #search-bar {
+      margin: 20px auto;
+      padding: 10px 15px;
+      font-size: 16px;
+      width: 80%;
+      max-width: 400px;
+      border: 2px solid #ff6f61; /* Coral border */
+      border-radius: 25px;
+      outline: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    #search-bar:focus {
+      border-color: #ff8a80; /* Lighter coral on focus */
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    ul {
+      list-style-type: none; /* Removes bullets */
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    li {
+      margin: 15px 0;
+    }
+
+    a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #fff;
+      background-color: #ff6f61; /* Bright coral */
+      padding: 10px 20px;
+      border-radius: 25px;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    a:hover {
+      background-color: #ff8a80; /* Slightly lighter coral on hover */
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <h3>
+    <img
+      src="cupcake.png"
+      alt="logo"
+      height="100px"
+    />
+    Yum Recipes
+  </h3>
+
+  <input
+    type="text"
+    id="search-bar"
+    placeholder="Search links..."
+  />
+
+  <script>
+    const collectionId = 50377515;
+    const apiEndpoint = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
+    const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
+
+    const requestOptions = {
+      method: "GET",
+      headers: new Headers({
+        Authorization: authToken,
+      }),
+      redirect: "follow",
+    };
+
+    fetch(apiEndpoint, requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        // Sort items alphabetically by title
+        const sortedItems = data.items.sort((a, b) => {
+          const titleA = (a.title || a.link).toLowerCase();
+          const titleB = (b.title || b.link).toLowerCase();
+          return titleA.localeCompare(titleB);
+        });
+
+        const linkList = document.createElement("ul");
+        linkList.id = "link-list";
+
+        sortedItems.forEach((item) => {
+          const listItem = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = item.link;
+          link.target = "_blank";
+          link.textContent = item.title || item.link;
+
+          listItem.appendChild(link);
+          linkList.appendChild(listItem);
+        });
+
+        document.body.appendChild(linkList);
+
+        // Implement search bar filtering
+        const searchBar = document.getElementById("search-bar");
+        searchBar.addEventListener("keyup", (event) => {
+          const filterText = event.target.value.toLowerCase();
+          const listItems = document.querySelectorAll("#link-list li");
+
+          listItems.forEach((listItem) => {
+            const linkText = listItem.textContent.toLowerCase();
+            if (linkText.includes(filterText)) {
+              listItem.style.display = ""; // Show the item
+            } else {
+              listItem.style.display = "none"; // Hide the item
+            }
+          });
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching API data:", error);
+      });
+  </script>
+</body>
+</html>
