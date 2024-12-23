@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting...</title>
+  <script>
+    // Get the collection id from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const collectionId = 50813956 //urlParams.get('id');
+
+    // if (!collectionId) {
+    //   alert('Collection ID not found in URL parameters!');
+    //   throw new Error('No collection ID provided.');
+    // }
+
+    const apiEndpoint = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
+    const authToken = "Bearer 0f1d16de-033f-4d92-9a50-e37992ed9b94";
+
+    const requestOptions = {
+      method: "GET",
+      headers: new Headers({
+        Authorization: authToken,
+      }),
+    };
+
+    // Fetch data and redirect to the most recent link
+    fetch(apiEndpoint, requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        const linksList = data.items || [];
+
+        if (linksList.length > 0) {
+          // Sort links by date or relevant criteria
+          linksList.sort((a, b) => new Date(b.created) - new Date(a.created));
+
+          // Redirect to the most recent link
+          const mostRecentLink = linksList[0].link;
+          window.location.href = mostRecentLink;
+        } else {
+          alert('No links found in this collection.');
+        }
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  </script>
+</head>
+<body></body>
+</html>
